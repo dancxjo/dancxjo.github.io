@@ -184,7 +184,7 @@
 
         function getBeat(now) {
             now = now || new Date();
-            return (now.getUTCSeconds() + (now.getUTCMinutes() * 60) + ((1+now.getUTCHours()) * 3600)) / 86.4;
+            return (now.getUTCSeconds() + (now.getUTCMinutes() * 60) + ((1+now.getUTCHours()) * 3600)) / 86.4 % 1000;
         }
 
         function setHands() {
