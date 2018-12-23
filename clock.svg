@@ -1,0 +1,229 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1000 1000">
+    <defs>
+        <style>
+            .numeral-band, #moment-count {
+                text-anchor: middle;
+                alignment-baseline: middle;
+            }
+
+            #moment-count {
+                font-size: 250%;
+            }
+
+            #deciday {
+                font-size: 500%;
+            }
+
+            #moments {
+                font-size: 80%;
+            }
+
+            #hours {
+                font-size: 240%;
+                fill: gray;
+            }
+
+            #minutes {
+                font-size: 80%;
+                fill: gray;
+            }
+
+            #frame {
+                fill: white;
+                stroke: black;
+                stroke-width: 30; 
+            }
+
+            #center {
+                stroke-width: 30;
+            }
+
+            #short-hand {
+                stroke: black;
+                stroke-width: 15;
+            }
+
+            #minute-hand {
+                stroke: gray;
+                stroke-width: 2;
+            }
+            
+            #second-hand {
+                stroke: pink;
+                stroke-width: 1;
+            }
+
+            #long-hand {
+                stroke: black;
+                stroke-width: 10;
+            }
+
+            #fast-hand {
+                stroke: red;
+                stroke-width: 2px;
+            }
+
+            #daylight {
+                fill: orange;
+                fill-opacity: 0.5;
+                stroke: none;
+                fill-rule: evenodd;
+            }
+        </style>
+        <g id="deciday"></g>
+        <g id="moments"></g>
+        <g id="hours"></g>
+        <g id="minutes"></g>
+    </defs>
+    <circle id="frame" cx="50%" cy="50%" r="45%"/>
+ 
+    <path id="daylight" />
+
+    <use href="#hours"/>
+    <use href="#minutes"/>
+    <use href="#moments"/>
+    <use href="#deciday"/>
+
+    <text id="moment-count" x="500" y="250">000.0000</text>
+ 
+    <line id="short-hand" x1="50%" y1="50%" />
+    <line id="long-hand" x1="50%" y1="50%" />
+    <line id="fast-hand" x1="50%" y1="50%" />
+    <line id="minute-hand" x1="50%" y1="50%" />
+    <line id="second-hand" x1="50%" y1="50%" />
+    <circle id="center" cx="50%" cy="50%" r="25" />
+    <script type="text/javascript"><![CDATA[
+        const width = 1000;
+        const height = 1000;
+        const radius = width / 2;
+        const center = { x: width/2, y: height/2};
+
+        function getSunTimes(lat, lng) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const response = JSON.parse(this.responseText);
+                    const sunrise = getMoment(new Date(response.results.sunrise));
+                    const sunset = getMoment(new Date(response.results.sunset));
+                    console.log(sunrise, sunset);
+                    const opts = {
+                        cx: center.x,
+                        cy: center.y,
+                        radius: radius * 0.9,
+                        start_angle: sunrise / 1000 * 360,
+                        end_angle: sunset / 1000 * 360,
+                        thickness: 130
+                    };
+
+                    const start = polarToCartesian(opts.cx, opts.cy, opts.radius, opts.end_angle);
+                    const end = polarToCartesian(opts.cx, opts.cy, opts.radius, opts.start_angle);
+                    const largeArcFlag = opts.end_angle - opts.start_angle <= 180 ? "0" : "1";
+                        
+                    const cutout_radius = opts.radius - opts.thickness;
+                    const start2 = polarToCartesian(opts.cx, opts.cy, cutout_radius, opts.end_angle);
+                    const end2 = polarToCartesian(opts.cx, opts.cy, cutout_radius, opts.start_angle);
+
+                    const d = [
+                        "M", start.x, start.y,
+                        "A", opts.radius, opts.radius, 0, largeArcFlag, 0, end.x, end.y,
+                        "L", opts.cx, opts.cy,
+                        "Z",
+                        
+                        "M", start2.x, start2.y,
+                        "A", cutout_radius, cutout_radius, 0, largeArcFlag, 0, end2.x, end2.y,
+                        "L", opts.cx, opts.cy,
+                        "Z"
+                    ].join(" ");
+
+                    document.getElementById("daylight").setAttribute("d", d);
+                }
+            };
+            xhttp.open("GET", `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`, true);
+            xhttp.send();
+        }
+
+        function degRad(deg) {
+            return (deg-360/4) * Math.PI / 180;
+        }
+
+        function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+            var angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+
+            return {
+                x: centerX + (radius * Math.cos(angleInRadians)),
+                y: centerY + (radius * Math.sin(angleInRadians))
+            };
+        }
+
+        function pointAt(center, a, radius) {
+            return {
+                x: center.x + Math.cos(a) * radius,
+                y: center.y + Math.sin(a) * radius
+            };
+        }
+
+        function addLabels(min, max, radius, labelClass, mod) {
+            const group = document.querySelector('#' + labelClass);
+            for (let i = min; i <= max; i++) {
+                const a = degRad(i / max * 360);
+                const {x, y} = pointAt(center, a, radius);
+                const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                label.setAttribute('x', x);
+                label.setAttribute('y', y);
+                label.setAttribute('class', labelClass + ' numeral-band');
+                label.innerHTML = mod ? (i % mod) || '' : i;
+                group.appendChild(label);
+            }
+        }
+
+        function getMoment(now) {
+            now = now || new Date();
+            return (now.getHours() + ((now.getMinutes() + ((now.getSeconds() + now.getMilliseconds() / 1000) / 60)) / 60)) / 24 * 1000;
+        }
+
+        function setHands() {
+            const longHand = document.querySelector('#long-hand');
+            const shortHand = document.querySelector('#short-hand');
+            const fastHand = document.querySelector('#fast-hand');
+            const minuteHand = document.querySelector('#minute-hand');
+            const secondHand = document.querySelector('#second-hand')
+
+            const moment = getMoment();
+            document.querySelector('#moment-count').innerHTML = moment.toFixed(3);
+
+            const shortTip = pointAt(center, degRad(moment / 1000 * 360), radius * 0.45);
+            shortHand.setAttribute('x2', shortTip.x);
+            shortHand.setAttribute('y2', shortTip.y);
+
+            const longTip = pointAt(center, degRad(moment % 100 / 100 * 360), radius * 0.75);
+            longHand.setAttribute('x2', longTip.x);
+            longHand.setAttribute('y2', longTip.y);
+
+            const fastTip = pointAt(center, degRad(moment % 1 * 360), radius * 0.85);
+            fastHand.setAttribute('x2', fastTip.x);
+            fastHand.setAttribute('y2', fastTip.y);
+
+            const now = new Date();
+            const ms = now.getMilliseconds();
+            const seconds = now.getSeconds() + ms / 1000;
+            const secondTip = pointAt(center, degRad(seconds / 60 * 360), radius * 0.65);
+            secondHand.setAttribute('x2', secondTip.x);
+            secondHand.setAttribute('y2', secondTip.y);
+            
+            const minutes = now.getMinutes() + (seconds / 60);
+            const minuteTip = pointAt(center, degRad(minutes / 60 * 360), radius * 0.55);
+            minuteHand.setAttribute('x2', minuteTip.x);
+            minuteHand.setAttribute('y2', minuteTip.y);
+        }
+
+        addLabels(1, 10, radius * 0.75, 'deciday');
+        addLabels(1, 100, radius * 0.85, 'moments');
+        addLabels(1, 24, radius * 0.8, 'hours', 12);
+        addLabels(1, 60, radius * 0.68, 'minutes');
+        setInterval(setHands, 0.0864);
+        navigator.geolocation.watchPosition(function(position) {
+            getSunTimes(position.coords.latitude, position.coords.longitude);
+        });
+    ]]></script>
+</svg>
