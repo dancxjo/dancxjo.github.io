@@ -86,7 +86,7 @@
     <use href="#deciday"/>
 
     <text id="moment-count" x="500" y="250">000.0000</text>
- 
+    <text id="beats" x="550" y="280"></text>
     <line id="short-hand" x1="50%" y1="50%" />
     <line id="long-hand" x1="50%" y1="50%" />
     <line id="fast-hand" x1="50%" y1="50%" />
@@ -182,6 +182,11 @@
             return (now.getHours() + ((now.getMinutes() + ((now.getSeconds() + now.getMilliseconds() / 1000) / 60)) / 60)) / 24 * 1000;
         }
 
+        function getBeat(now) {
+            now = now || new Date();
+            return (now.getUTCSeconds() + (now.getUTCMinutes() * 60) + ((1+now.getUTCHours()) * 3600)) / 86.4;
+        }
+
         function setHands() {
             const longHand = document.querySelector('#long-hand');
             const shortHand = document.querySelector('#short-hand');
@@ -191,6 +196,7 @@
 
             const moment = getMoment();
             document.querySelector('#moment-count').innerHTML = moment.toFixed(3);
+            document.querySelector('#beats').innerHTML = '@' + getBeat().toFixed(2);
 
             const shortTip = pointAt(center, degRad(moment / 1000 * 360), radius * 0.45);
             shortHand.setAttribute('x2', shortTip.x);
