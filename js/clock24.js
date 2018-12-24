@@ -117,8 +117,6 @@ class Clock {
       A ${this.radius - 35} ${this.radius - 35} 0 ${largeArcFlag} 0 ${d.x} ${d.y}
       L ${this.center.x} ${this.center.y}
       Z`);
-
-    document.getElementById("daylight").setAttribute("d", d);
   }
 
   getSunTimes(lat, lng) {
