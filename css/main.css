@@ -286,5 +286,6 @@ textarea {
     }
 }
 
-#clock {
+.clocks {
+    display: flex;
 }

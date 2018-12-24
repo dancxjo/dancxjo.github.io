@@ -20,14 +20,40 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
 
-  <!-- Add your site or application content here -->
-  <p>I have a weird fascination with decimal time.</p>
-  <object type="image/svg+xml" data="clock.svg" id="clock">
-    You need a better browser to see this clock in action
-  </object>
+  <h1>My Clocks</h1>
+
+  <div class="clocks">
+    <figure>
+      <object type="image/svg+xml" data="clock.svg" style="width: 400px">
+        You need a better browser to see this clock in action
+      </object>
+      <figcaption>I have a weird fascination with decimal time.</figcaption>
+    </figure>
+
+    <figure>
+      <object type="image/svg+xml" data="clock24.svg" id="clock24" style="width: 400px">
+        You need a better browser to see this clock in action
+      </object>
+      <figcaption>
+        This is a balanced quartovigesimal clock inspired by 
+        <a href="https://dozenal.ae-web.ca/">dozenal
+          clocks</a>. I've corrupted
+        duodecimal by using Roman numeral Ⅹ for ten and stealing the turned 2 for twelve. I've
+        no idea how you'd go about verbalizing times like this, but maybe something like
+        "Eight hours 'til (midnight) and &hellip;" Well, who knows?
+      </figcaption>
+    </figure>
+  </div>
+
+  <script src="js/clock24.js"></script>
+
   <script src="js/vendor/modernizr-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script>
+    window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')
+
+  </script>
   <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
 </body>

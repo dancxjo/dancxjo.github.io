@@ -1,0 +1,66 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1000 1000">
+    <defs>
+        <style>
+            .numeral-band, #counter {
+                text-anchor: middle;
+                alignment-baseline: middle;
+            }
+
+            #counter {
+                font-size: 500%;
+                font-family: monospace;
+                alignment-baseline: baseline;
+            }
+
+            .negative {
+                text-decoration: overline;
+            }
+
+            #hours {
+                font-size: 250%;
+            }
+
+            #frame {
+                fill: white;
+                stroke: black;
+                stroke-width: 30; 
+            }
+
+            #nose {
+                stroke-width: 30;
+            }
+
+            #short-hand {
+                stroke: black;
+                stroke-width: 15;
+            }
+
+            #long-hand {
+                stroke: black;
+                stroke-width: 10;
+            }
+
+            #fast-hand {
+                stroke: red;
+                stroke-width: 2px;
+            }
+
+            #daylight {
+                fill: orange;
+                fill-opacity: 0.5;
+                stroke: none;
+                fill-rule: evenodd;
+            }
+        </style>
+        <g id="hours" class="numeral-band"></g>
+    </defs>
+    <circle id="frame" cx="50%" cy="50%" r="45%"/>
+    <path id="daylight" />
+    <use href="#hours"/>
+    <text id="counter" x="500" y="250"></text>
+    <line id="short-hand" x1="50%" y1="50%" x2="50%" y2="50%" />
+    <line id="long-hand" x1="50%" y1="50%"  x2="50%" y2="50%" />
+    <line id="fast-hand" x1="50%" y1="50%"  x2="50%" y2="50%" />
+    <circle id="nose" cx="50%" cy="50%" r="25" />
+</svg>
