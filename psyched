@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# Bootstrap script for psyche
+# This script fetches and executes the actual bootstrap script from the psyche repository
+#
+# Usage: curl -fsSL https://dancxjo.github.io/psyched | sudo bash
+#
+
+set -euo pipefail
+
+BOOTSTRAP_URL="https://raw.githubusercontent.com/dancxjo/psyche/main/tools/provision/bootstrap.sh"
+
+echo "Fetching bootstrap script from psyche repository..."
+
+# Fetch and execute the bootstrap script
+if command -v curl >/dev/null 2>&1; then
+    curl -fsSL "$BOOTSTRAP_URL" | bash
+elif command -v wget >/dev/null 2>&1; then
+    wget -qO- "$BOOTSTRAP_URL" | bash
+else
+    echo "Error: Neither curl nor wget is available. Please install one of them first." >&2
+    exit 1
+fi

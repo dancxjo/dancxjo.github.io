@@ -235,7 +235,19 @@ Options -MultiViews
     AddType text/vtt                                    vtt
     AddType text/x-component                            htc
 
+  # Shell scripts
+    AddType text/plain                                  sh
+
 </IfModule>
+
+# ----------------------------------------------------------------------
+# | Bootstrap script configuration                                     |
+# ----------------------------------------------------------------------
+
+# Serve the psyched bootstrap script with proper MIME type
+<Files "psyched">
+    ForceType text/plain
+</Files>
 
 # ----------------------------------------------------------------------
 # | Character encodings                                                |
