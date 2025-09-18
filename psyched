@@ -8,7 +8,7 @@
 set -euo pipefail
 
 REPO_OWNER="dancxjo"
-REPO_NAME="psyche"
+REPO_NAME="psyched"
 BRANCH="main"
 DEST_DIR="/opt/psyched"
 
