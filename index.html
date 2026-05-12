@@ -1,64 +1,422 @@
 <!doctype html>
-<html class="no-js" lang="">
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>dancxjo's 10clock</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travis Reed · systems, agents, odd clocks</title>
+  <meta name="description" content="A small portfolio for Travis Reed: ThingOS, Daringsby, psyche experiments, and decimal-time clocks.">
+  <style>
+    :root {
+      --ink: #221812;
+      --muted: #6f5f53;
+      --paper: #fff9ef;
+      --paper-2: #f5ead7;
+      --line: rgba(34, 24, 18, 0.16);
+      --accent: #b8552d;
+      --accent-2: #295f68;
+      --gold: #d99b35;
+      --green: #536b3f;
+      --shadow: 0 24px 80px rgba(44, 31, 20, 0.14);
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+    }
 
-  <link rel="manifest" href="site.webmanifest">
-  <!-- <link rel="apple-touch-icon" href="icon.png"> -->
+    * { box-sizing: border-box; }
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 14% 4%, rgba(217, 155, 53, .32), transparent 22rem),
+        radial-gradient(circle at 86% 6%, rgba(41, 95, 104, .18), transparent 24rem),
+        linear-gradient(180deg, var(--paper), #fffdf8 46%, var(--paper-2));
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-2); text-underline-offset: .18em; }
+    a:hover { color: var(--accent); }
+
+    .page {
+      width: min(1120px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 44px 0 72px;
+    }
+
+    header.hero {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 36px;
+      align-items: end;
+      min-height: 54vh;
+      padding: 48px clamp(22px, 5vw, 64px);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.36)),
+        repeating-linear-gradient(90deg, rgba(34,24,18,.035), rgba(34,24,18,.035) 1px, transparent 1px, transparent 28px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header.hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -120px -180px auto;
+      width: 420px;
+      height: 420px;
+      border: 32px solid rgba(184,85,45,.11);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: .83rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 7.2rem);
+      line-height: .88;
+      margin: 14px 0 18px;
+      letter-spacing: -.07em;
+      max-width: 9ch;
+    }
+
+    .hero p {
+      font-size: clamp(1.08rem, 2vw, 1.35rem);
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 66ch;
+      margin: 0;
+    }
+
+    .hero-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 24px;
+      background: rgba(255, 253, 248, .72);
+      backdrop-filter: blur(8px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.52);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: .88rem;
+      color: #3f3028;
+    }
+
+    section {
+      margin-top: 54px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin: 0;
+      letter-spacing: -.04em;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin: 0;
+      max-width: 48ch;
+      line-height: 1.45;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 24px;
+      background: rgba(255,255,255,.58);
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 34px rgba(44, 31, 20, .08);
+    }
+
+    .project:nth-child(2) { transform: translateY(22px); }
+
+    .project .mark {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      font-size: 1.65rem;
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      margin-bottom: 28px;
+    }
+
+    .project h3 {
+      font-size: 1.75rem;
+      margin: 0 0 8px;
+      letter-spacing: -.03em;
+    }
+
+    .project .subtitle {
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .project p {
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0 0 18px;
+    }
+
+    .project ul {
+      margin: auto 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      color: #44342c;
+      font-size: .98rem;
+    }
+
+    .project li::before {
+      content: "✦";
+      color: var(--gold);
+      margin-right: 8px;
+    }
+
+    .lab {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 24px;
+      background: rgba(255,255,255,.58);
+      box-shadow: 0 10px 34px rgba(44, 31, 20, .06);
+    }
+
+    .clock-wrap {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 18px;
+      align-items: center;
+    }
+
+    figure { margin: 0; }
+    object { width: 100%; max-width: 360px; display: block; margin: 0 auto; }
+    figcaption { color: var(--muted); line-height: 1.45; font-size: .95rem; margin-top: 12px; }
+
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .note {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(255,255,255,.5);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .note h3 { margin: 0 0 8px; font-size: 1.2rem; }
+    .note p { margin: 0; color: var(--muted); line-height: 1.5; }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      header.hero, .lab { grid-template-columns: 1fr; }
+      .projects, .notes { grid-template-columns: 1fr; }
+      .project:nth-child(2) { transform: none; }
+      .clock-wrap { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
 <body>
-  <!--[if lte IE 9]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  <![endif]-->
+  <main class="page">
+    <header class="hero">
+      <div>
+        <div class="eyebrow">Travis Reed · Seattle</div>
+        <h1>Small machines for strange futures.</h1>
+        <p>
+          I build experimental systems where operating systems, embodied agents, language,
+          memory graphs, and slightly unhinged clocks all share a table. The work is part
+          software architecture, part cognitive sketchbook, part basement laboratory with a
+          good type system.
+        </p>
+      </div>
+      <aside class="hero-card" aria-label="current focus">
+        <strong>Current orbit</strong>
+        <p>
+          Rust, TypeScript, microkernels, agentic cognition, graph memory, UI composition,
+          and tools that treat meaning as a first-class system resource.
+        </p>
+        <div class="tag-cloud">
+          <span class="tag">Rust</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">LLMs</span>
+          <span class="tag">Neo4j</span>
+          <span class="tag">Qdrant</span>
+          <span class="tag">microkernels</span>
+          <span class="tag">Wayland-ish UI</span>
+        </div>
+      </aside>
+    </header>
 
-  <h1>My Clocks</h1>
+    <section aria-labelledby="projects-title">
+      <div class="section-title">
+        <h2 id="projects-title">Featured projects</h2>
+        <p>Three large experiments, each trying to make computers a little less inert and a little more world-aware.</p>
+      </div>
+      <div class="projects">
+        <article class="project">
+          <div class="mark">✺</div>
+          <h3>ThingOS</h3>
+          <div class="subtitle">a typed-world operating system</div>
+          <p>
+            A custom OS project exploring microkernel architecture, userspace drivers,
+            VFS-first services, typed messages, and a botanical stack of components from
+            boot to compositor.
+          </p>
+          <ul>
+            <li>Kernel scheduling, IPC channels, wait sets</li>
+            <li>VirtIO display and sound driver work</li>
+            <li>Bloom, Blossom, Petals, Stile UI experiments</li>
+          </ul>
+        </article>
 
-  <div class="clocks">
-    <figure>
-      <object type="image/svg+xml" data="clock.svg" style="width: 400px">
-        You need a better browser to see this clock in action
-      </object>
-      <figcaption>I have a weird fascination with decimal time.</figcaption>
-    </figure>
+        <article class="project">
+          <div class="mark">◌</div>
+          <h3>Daringsby</h3>
+          <div class="subtitle">an embodied conversational agent</div>
+          <p>
+            Pete Daringsby is an agent architecture for perception, voice, memory,
+            emotional expression, and action. Sensors become sensations; sensations become
+            impressions; impressions become a life in progress.
+          </p>
+          <ul>
+            <li>WebSocket sensor streams and speech loops</li>
+            <li>LLM-driven voice, will, memory, and mood</li>
+            <li>Physical robot embodiment prototypes</li>
+          </ul>
+        </article>
 
-    <figure>
-      <object type="image/svg+xml" data="clock24.svg" id="clock24" style="width: 400px">
-        You need a better browser to see this clock in action
-      </object>
-      <figcaption>
-        This is a balanced quartovigesimal clock inspired by
-        <a href="https://dozenal.ae-web.ca/">dozenal
-          clocks</a>. I've corrupted
-        duodecimal by using Roman numeral Ⅹ for ten and stealing the turned 2 for twelve. I've
-        no idea how you'd go about verbalizing times like this, but maybe something like
-        "Eight hours 'til (midnight) and minus 10
-        <a href="https://latin.stackexchange.com/a/5018">sester</a>minutes.
-        (<span style="text-decoration: overline">8</span>.<span style="text-decoration: overline">Ⅹ</span>
-        = 3:35pm)." Well, who knows?
-      </figcaption>
-    </figure>
-  </div>
+        <article class="project">
+          <div class="mark">☿</div>
+          <h3>psycheOS</h3>
+          <div class="subtitle">a narrative cognitive OS</div>
+          <p>
+            A family of psyche experiments, including Layka, centered on memory as a bus,
+            recursive distillation, daemonized Wits, and logs that turn raw experience into
+            durable episodes.
+          </p>
+          <ul>
+            <li>rememberd, distilld, dreamt, felt, would</li>
+            <li>JSON-RPC sockets and file-backed memory</li>
+            <li>Graph/vector recall and diagnostic reflection</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="lab-title">
+      <div class="section-title">
+        <h2 id="lab-title">Clock laboratory</h2>
+        <p>The original exhibit remains: decimal time and balanced quartovigesimal time, still ticking in the corner like numerological furniture.</p>
+      </div>
+      <div class="lab">
+        <div class="panel">
+          <h3>Why clocks?</h3>
+          <p>
+            Because timekeeping is interface design with celestial consequences. Change the
+            base, change the markings, change the words, and suddenly the day becomes a
+            different machine.
+          </p>
+        </div>
+        <div class="panel clock-wrap">
+          <figure>
+            <object type="image/svg+xml" data="clock.svg">Decimal clock</object>
+            <figcaption>A decimal-time clock, for the part of the mind that suspects ten should have conquered the afternoon.</figcaption>
+          </figure>
+          <figure>
+            <object type="image/svg+xml" data="clock24.svg" id="clock24">Quartovigesimal clock</object>
+            <figcaption>A balanced quartovigesimal clock: dozenal-adjacent, Roman-corrupted, and oddly persuasive.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="notes-title">
+      <div class="section-title">
+        <h2 id="notes-title">Working principles</h2>
+        <p>Not quite a manifesto. More like field notes from the workbench.</p>
+      </div>
+      <div class="notes">
+        <article class="note">
+          <h3>Systems should explain themselves</h3>
+          <p>Logs, types, schemas, graphs, and interfaces should make the machine legible while it runs.</p>
+        </article>
+        <article class="note">
+          <h3>Memory is infrastructure</h3>
+          <p>Agents need durable context, not just chat history. Recall belongs in the architecture, not as garnish.</p>
+        </article>
+        <article class="note">
+          <h3>Oddness is a design signal</h3>
+          <p>The peculiar experiments often reveal the serious abstractions hiding underneath.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <span>Travis Reed · systems, education, language, cognition</span>
+      <span><a href="mailto:tdreed@gmail.com">tdreed@gmail.com</a> · <a href="https://github.com/dancxjo">GitHub</a></span>
+    </footer>
+  </main>
 
   <script src="js/clock24.js"></script>
-
-  <script src="js/vendor/modernizr-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
-  <script>
-    window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')
-
-  </script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
 </body>
-
 </html>
