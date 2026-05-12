@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Travis Reed · systems, agents, odd clocks</title>
-  <meta name="description" content="A small portfolio for Travis Reed: ThingOS, Daringsby, psyche experiments, and decimal-time clocks.">
+  <meta name="description" content="A small portfolio for Travis Reed: ThingOS, Daringsby, psyched, and decimal-time clocks.">
   <style>
     :root {
       --ink: #221812;
@@ -125,9 +125,7 @@
       color: #3f3028;
     }
 
-    section {
-      margin-top: 54px;
-    }
+    section { margin-top: 54px; }
 
     .section-title {
       display: flex;
@@ -161,7 +159,7 @@
       border-radius: 26px;
       padding: 24px;
       background: rgba(255,255,255,.58);
-      min-height: 360px;
+      min-height: 390px;
       display: flex;
       flex-direction: column;
       box-shadow: 0 10px 34px rgba(44, 31, 20, .08);
@@ -187,6 +185,11 @@
       letter-spacing: -.03em;
     }
 
+    .project h3 a {
+      color: inherit;
+      text-decoration-color: rgba(41, 95, 104, .35);
+    }
+
     .project .subtitle {
       color: var(--accent);
       font-weight: 700;
@@ -200,7 +203,7 @@
     }
 
     .project ul {
-      margin: auto 0 0;
+      margin: auto 0 18px;
       padding: 0;
       list-style: none;
       display: grid;
@@ -213,6 +216,20 @@
       content: "✦";
       color: var(--gold);
       margin-right: 8px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-self: flex-start;
+      gap: 6px;
+      align-items: center;
+      margin-top: auto;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,.52);
+      font-weight: 700;
+      text-decoration: none;
     }
 
     .lab {
@@ -315,7 +332,7 @@
       <div class="projects">
         <article class="project">
           <div class="mark">✺</div>
-          <h3>ThingOS</h3>
+          <h3><a href="https://github.com/dancxjo/thingos">ThingOS</a></h3>
           <div class="subtitle">a typed-world operating system</div>
           <p>
             A custom OS project exploring microkernel architecture, userspace drivers,
@@ -327,11 +344,12 @@
             <li>VirtIO display and sound driver work</li>
             <li>Bloom, Blossom, Petals, Stile UI experiments</li>
           </ul>
+          <a class="project-link" href="https://github.com/dancxjo/thingos">Open project →</a>
         </article>
 
         <article class="project">
           <div class="mark">◌</div>
-          <h3>Daringsby</h3>
+          <h3><a href="https://github.com/dancxjo/daringsby">Daringsby</a></h3>
           <div class="subtitle">an embodied conversational agent</div>
           <p>
             Pete Daringsby is an agent architecture for perception, voice, memory,
@@ -343,22 +361,24 @@
             <li>LLM-driven voice, will, memory, and mood</li>
             <li>Physical robot embodiment prototypes</li>
           </ul>
+          <a class="project-link" href="https://github.com/dancxjo/daringsby">Open project →</a>
         </article>
 
         <article class="project">
           <div class="mark">☿</div>
-          <h3>psycheOS</h3>
-          <div class="subtitle">a narrative cognitive OS</div>
+          <h3><a href="https://github.com/dancxjo/psyched">psyched</a></h3>
+          <div class="subtitle">recursive summarization for machine cognition</div>
           <p>
-            A family of psyche experiments, including Layka, centered on memory as a bus,
-            recursive distillation, daemonized Wits, and logs that turn raw experience into
-            durable episodes.
+            Experiments in recursive summarization, graph databases, and vector stores as
+            building blocks for cognition. Raw events are compressed into higher-level
+            summaries, linked into memory, and made searchable by meaning.
           </p>
           <ul>
-            <li>rememberd, distilld, dreamt, felt, would</li>
-            <li>JSON-RPC sockets and file-backed memory</li>
-            <li>Graph/vector recall and diagnostic reflection</li>
+            <li>Layered summaries from raw input to durable context</li>
+            <li>Graph links for entities, events, and relationships</li>
+            <li>Vector recall for fuzzy, meaning-based memory</li>
           </ul>
+          <a class="project-link" href="https://github.com/dancxjo/psyched">Open project →</a>
         </article>
       </div>
     </section>
