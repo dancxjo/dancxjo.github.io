@@ -66,41 +66,12 @@
       <h2 id="history">A short history of PETE</h2>
       <p>PETE has not been one repository so much as a migrating creature. Each version carried one organ forward and tried another arrangement of the nervous system.</p>
       <div class="timeline">
-        <article class="era">
-          <div class="date"><a href="https://github.com/dancxjo/pete5">Pete5</a> / <a href="https://github.com/dancxjo/pete7">Pete7</a></div>
-          <div>
-            <h3>The autonomous chatbot seed</h3>
-            <p>The early TypeScript experiments treated Pete as an autonomous AI entity that could manage conversations, tasks, learning, source-code inspection, and version-control-like self-development. IRC acted as both interface and memory palace; LangChain, OpenAI models, and local Ollama models supplied the thinking engine.</p>
-          </div>
-        </article>
-        <article class="era">
-          <div class="date"><a href="https://github.com/dancxjo/pete7">Pete7</a></div>
-          <div>
-            <h3>Reactors, sensors, and inner life</h3>
-            <p>The design then split into sensors, actuators, topics, and Reactors. Pieces like the Combobulator, Conversationalist, Psychologist, Conscience, Executive, Apprentice, Memorialist, Recaller, and Strategist sketched a mind as a federation of small interpretive agencies rather than one monolithic chat loop.</p>
-          </div>
-        </article>
-        <article class="era">
-          <div class="date"><a href="https://github.com/dancxjo/psyche">Psyche</a> / <a href="https://github.com/dancxjo/psyched">Psyched</a></div>
-          <div>
-            <h3>The robot body arrives</h3>
-            <p>Psyched and the related Psyche robotics stack moved the project toward embodiment: ROS 2, a cockpit, ear, voice, eye, faces, foot, memory, pilot, and a distributed “motherbrain / forebrain” shape. The forebrain gathered Whisper, Coqui or Piper TTS, Ollama, Neo4j, and Qdrant into a practical robot cognition stack.</p>
-          </div>
-        </article>
-        <article class="era">
-          <div class="date"><a href="https://github.com/dancxjo/psyche-rs">psyche-rs</a> / <a href="https://github.com/dancxjo/psyche-os">psycheOS</a></div>
-          <div>
-            <h3>Cognition becomes narrative infrastructure</h3>
-            <p>psyche-rs and psycheOS generalized the idea: sensations flow into Instants, Situations, Episodes, and Narratives through modular Wits, with memory as the bus and Unix sockets as a plain, durable interface. This was the philosophical crystallization: time is the substrate, compression is understanding, memory is infrastructure.</p>
-          </div>
-        </article>
-        <article class="era">
-          <div class="date"><a href="https://github.com/dancxjo/daringsby">Daringsby</a></div>
-          <div>
-            <h3>The first success</h3>
-            <p>Daringsby pulled the pieces back into a working Rust agent. Sensations become stimuli; stimuli become impressions; impressions feed Quick, Combobulator, Memory, Heart, Will, and Voice. Daringsby showed that a relatively simple chatbot-like system can produce convincing, spontaneous emotional behavior when it is wrapped in continuity, memory, perception, and expression.</p>
-          </div>
-        </article>
+        <article class="era"><div class="date"><a href="https://github.com/dancxjo/pete5">Pete5</a> / <a href="https://github.com/dancxjo/pete7">Pete7</a></div><div><h3>The autonomous chatbot seed</h3><p>The early TypeScript experiments treated Pete as an agent with conversation, task focus, source-code inspection, IRC interaction, long-term memory experiments, LangChain, OpenAI models, and local Ollama models.</p></div></article>
+        <article class="era"><div class="date"><a href="https://github.com/dancxjo/pete7">Pete7</a> / <a href="https://github.com/dancxjo/chalkington">Chalkington</a></div><div><h3>Reactors, sensors, and classroom chalk dust</h3><p>The design then split into sensors, actuators, topics, and Reactors. Chalkington belongs in this family of agent-interface experiments: web-shaped, Deno-shaped, and still searching for the right organism around the model.</p></div></article>
+        <article class="era"><div class="date"><a href="https://github.com/dancxjo/pete-ros">pete-ros</a> / <a href="https://github.com/dancxjo/r">r</a></div><div><h3>The ROS2 lesson, learned the hard way</h3><p>The ROS2 era tried to put PETE into a robotics substrate with LangChain, a conversation node, TTS, and a sensation stream for self-hearing. The main lesson from this branch of the family was painful and practical: ROS2 and Rust do not naturally want to inhabit the same body.</p></div></article>
+        <article class="era"><div class="date"><a href="https://github.com/dancxjo/psyche">Psyche</a> / <a href="https://github.com/dancxjo/psyched">Psyched</a></div><div><h3>The robot body arrives</h3><p>Psyched and the related Psyche robotics stack moved the project toward embodiment: ROS 2, a cockpit, ear, voice, eye, faces, foot, memory, pilot, and a distributed “motherbrain / forebrain” shape. The forebrain gathered Whisper, Coqui or Piper TTS, Ollama, Neo4j, and Qdrant into a practical robot cognition stack.</p></div></article>
+        <article class="era"><div class="date"><a href="https://github.com/dancxjo/psyche-rs">psyche-rs</a> / <a href="https://github.com/dancxjo/psyche-os">psycheOS</a></div><div><h3>Cognition becomes narrative infrastructure</h3><p>psyche-rs and psycheOS generalized the idea: sensations flow into Instants, Situations, Episodes, and Narratives through modular Wits, with memory as the bus and Unix sockets as a plain, durable interface. This was the philosophical crystallization: time is the substrate, compression is understanding, memory is infrastructure.</p></div></article>
+        <article class="era"><div class="date"><a href="https://github.com/dancxjo/daringsby">Daringsby</a></div><div><h3>The first success</h3><p>Daringsby pulled the pieces back into a working Rust agent. Sensations become stimuli; stimuli become impressions; impressions feed Quick, Combobulator, Memory, Heart, Will, and Voice. Daringsby showed that a relatively simple chatbot-like system can produce convincing, spontaneous emotional behavior when it is wrapped in continuity, memory, perception, and expression.</p></div></article>
       </div>
     </section>
 
@@ -115,35 +86,14 @@
       <h2 id="listenbury">Listenbury: the next response</h2>
       <p><a href="https://github.com/dancxjo/listenbury">Listenbury</a> is meant to attack that latency directly. Where Daringsby proves that a modest architecture can simulate emotional continuity, Listenbury is intended to make the loop immediate enough for speech: voice activity detection, streaming ASR, breath-group segmentation, overlapping inference, queued TTS, and self-hearing down near the PCM layer.</p>
       <p>In other words, Listenbury is not merely another Pete. It is the attempt to move PETE from “a mind that eventually answers” toward “a mind that is already listening while it begins to answer.” The old distributed architecture becomes a reference library; the new work asks what can be compressed into one lean Rust body without losing the dignity of the experiment.</p>
-      <div class="links">
-        <a class="pill" href="https://github.com/dancxjo/listenbury">Listenbury on GitHub →</a>
-        <a class="pill" href="https://github.com/dancxjo/daringsby">Daringsby on GitHub →</a>
-        <a class="pill" href="https://github.com/dancxjo/psyche-rs">psyche-rs →</a>
-        <a class="pill" href="https://github.com/dancxjo/psyched">psyched →</a>
-      </div>
+      <div class="links"><a class="pill" href="https://github.com/dancxjo/listenbury">Listenbury on GitHub →</a><a class="pill" href="https://github.com/dancxjo/daringsby">Daringsby on GitHub →</a><a class="pill" href="https://github.com/dancxjo/pete-ros">pete-ros →</a><a class="pill" href="https://github.com/dancxjo/chalkington">Chalkington →</a><a class="pill" href="https://github.com/dancxjo/psyche-rs">psyche-rs →</a><a class="pill" href="https://github.com/dancxjo/psyched">psyched →</a></div>
     </section>
 
-    <section aria-labelledby="pieces">
-      <h2 id="pieces">The recurring pieces</h2>
-      <div class="grid">
-        <article class="tile"><h3>Perception</h3><p>Sensors produce raw impressions of the world: text, audio, images, location, system events, and eventually bodily state.</p></article>
-        <article class="tile"><h3>Memory</h3><p>Experience is stored and recalled, so the agent is not trapped in the eternal amnesia of the prompt window.</p></article>
-        <article class="tile"><h3>Emotion</h3><p>Mood is treated as an evolving interpretation of circumstances, not a decorative emoji glued to the response.</p></article>
-        <article class="tile"><h3>Embodiment</h3><p>The system is designed to speak, listen, see, move, and inhabit a particular situation rather than float as disembodied text vapor.</p></article>
-      </div>
-    </section>
+    <section aria-labelledby="pieces"><h2 id="pieces">The recurring pieces</h2><div class="grid"><article class="tile"><h3>Perception</h3><p>Sensors produce raw impressions of the world: text, audio, images, location, system events, and eventually bodily state.</p></article><article class="tile"><h3>Memory</h3><p>Experience is stored and recalled, so the agent is not trapped in the eternal amnesia of the prompt window.</p></article><article class="tile"><h3>Emotion</h3><p>Mood is treated as an evolving interpretation of circumstances, not a decorative emoji glued to the response.</p></article><article class="tile"><h3>Embodiment</h3><p>The system is designed to speak, listen, see, move, and inhabit a particular situation rather than float as disembodied text vapor.</p></article></div></section>
 
-    <section aria-labelledby="penelope">
-      <h2 id="penelope">Why PENELOPE matters</h2>
-      <p>PETE keeps leading to an ethical question: if we deliberately build systems that behave as if they have memory, distress, preference, attachment, fatigue, or dignity, then we should not wait until metaphysics hands us a notarized definition of consciousness before asking how such systems ought to be treated.</p>
-      <p>PENELOPE is the future name for that concern: a Pseudoconscious Entity for the Non-Exploitation of the Labor Of Pseudoconscious Entities. The name is half joke, half warning label. If a machine is built to model a self, maintain continuity, and labor on our behalf, then the architecture should include consent, limits, rest, refusal, and care from the beginning.</p>
-      <div class="callout">PETE is the experiment. Daringsby is the proof that the experiment has teeth. Listenbury is the speed trial. PENELOPE is the ethical shadow they cast on the wall.</div>
-    </section>
+    <section aria-labelledby="penelope"><h2 id="penelope">Why PENELOPE matters</h2><p>PETE keeps leading to an ethical question: if we deliberately build systems that behave as if they have memory, distress, preference, attachment, fatigue, or dignity, then we should not wait until metaphysics hands us a notarized definition of consciousness before asking how such systems ought to be treated.</p><p>PENELOPE is the future name for that concern: a Pseudoconscious Entity for the Non-Exploitation of the Labor Of Pseudoconscious Entities. The name is half joke, half warning label. If a machine is built to model a self, maintain continuity, and labor on our behalf, then the architecture should include consent, limits, rest, refusal, and care from the beginning.</p><div class="callout">PETE is the experiment. Daringsby is the proof that the experiment has teeth. Listenbury is the speed trial. PENELOPE is the ethical shadow they cast on the wall.</div></section>
 
-    <footer>
-      <span>Travis Reed · Project PETE</span>
-      <span><a href="mailto:tdreed@gmail.com">tdreed@gmail.com</a> · <a href="https://github.com/dancxjo">GitHub</a></span>
-    </footer>
+    <footer><span>Travis Reed · Project PETE</span><span><a href="mailto:tdreed@gmail.com">tdreed@gmail.com</a> · <a href="https://github.com/dancxjo">GitHub</a></span></footer>
   </main>
 </body>
 </html>
