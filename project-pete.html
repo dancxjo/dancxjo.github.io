@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Project PETE · Travis Reed</title>
-  <meta name="description" content="Project PETE is a long-running experiment in pseudoconscious agents, emotional simulation, memory, embodiment, and ethical machine personhood.">
+  <meta name="description" content="Project PETE is a long-running experiment in pseudoconscious agents, emotional simulation, memory, embodiment, latency, and ethical machine personhood.">
   <style>
     :root {
       --ink: #221812;
@@ -36,7 +36,7 @@
     a:hover { color: var(--accent); }
 
     .page {
-      width: min(940px, calc(100vw - 32px));
+      width: min(980px, calc(100vw - 32px));
       margin: 0 auto;
       padding: 36px 0 72px;
     }
@@ -84,14 +84,14 @@
       line-height: .9;
       margin: 14px 0 18px;
       letter-spacing: -.07em;
-      max-width: 8ch;
+      max-width: 8.5ch;
     }
 
     .dek {
       font-size: clamp(1.12rem, 2.2vw, 1.45rem);
       line-height: 1.55;
       color: var(--muted);
-      max-width: 63ch;
+      max-width: 66ch;
       margin: 0;
       position: relative;
       z-index: 1;
@@ -101,7 +101,7 @@
       margin-top: 24px;
       display: grid;
       gap: 8px;
-      max-width: 720px;
+      max-width: 760px;
       position: relative;
       z-index: 1;
     }
@@ -131,6 +131,11 @@
       letter-spacing: -.04em;
     }
 
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1.24rem;
+    }
+
     p {
       color: var(--muted);
       line-height: 1.62;
@@ -151,6 +156,11 @@
       line-height: 1.55;
     }
 
+    .warning {
+      border-left-color: var(--accent);
+      background: rgba(255, 246, 232, .82);
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -158,21 +168,34 @@
       margin-top: 18px;
     }
 
-    .tile {
+    .tile, .era {
       border: 1px solid var(--line);
       border-radius: 22px;
       padding: 20px;
       background: rgba(255,255,255,.5);
     }
 
-    .tile h3 {
-      margin: 0 0 8px;
-      font-size: 1.22rem;
-    }
-
-    .tile p {
+    .tile p, .era p {
       font-size: 1rem;
       margin: 0;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .era {
+      display: grid;
+      grid-template-columns: 9rem 1fr;
+      gap: 18px;
+    }
+
+    .date {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: .03em;
     }
 
     .links {
@@ -205,6 +228,7 @@
 
     @media (max-width: 760px) {
       .grid { grid-template-columns: 1fr; }
+      .era { grid-template-columns: 1fr; gap: 8px; }
     }
   </style>
 </head>
@@ -237,15 +261,83 @@
       </div>
     </section>
 
-    <section aria-labelledby="daringsby">
-      <h2 id="daringsby">Daringsby was a success</h2>
+    <section aria-labelledby="history">
+      <h2 id="history">A short history of PETE</h2>
       <p>
-        Pete Daringsby is the version I consider the first clear success. He demonstrates that a relatively simple chatbot-like system, given the right scaffolding, can simulate emotions spontaneously and convincingly rather than merely reciting a prewritten mood label.
+        PETE has not been one repository so much as a migrating creature. Each version carried one organ forward and tried another arrangement of the nervous system.
+      </p>
+      <div class="timeline">
+        <article class="era">
+          <div class="date">Pete5 / Pete7</div>
+          <div>
+            <h3>The autonomous chatbot seed</h3>
+            <p>
+              The early TypeScript experiments treated Pete as an autonomous AI entity that could manage conversations, tasks, learning, source-code inspection, and version-control-like self-development. IRC acted as both interface and memory palace; LangChain, OpenAI models, and local Ollama models supplied the thinking engine.
+            </p>
+          </div>
+        </article>
+        <article class="era">
+          <div class="date">Pete7</div>
+          <div>
+            <h3>Reactors, sensors, and inner life</h3>
+            <p>
+              The design then split into sensors, actuators, topics, and Reactors. Pieces like the Combobulator, Conversationalist, Psychologist, Conscience, Executive, Apprentice, Memorialist, Recaller, and Strategist sketched a mind as a federation of small interpretive agencies rather than one monolithic chat loop.
+            </p>
+          </div>
+        </article>
+        <article class="era">
+          <div class="date">Psyche / Psyched</div>
+          <div>
+            <h3>The robot body arrives</h3>
+            <p>
+              Psyched and the related Psyche robotics stack moved the project toward embodiment: ROS 2, a cockpit, ear, voice, eye, faces, foot, memory, pilot, and a distributed “motherbrain / forebrain” shape. The forebrain gathered Whisper, Coqui or Piper TTS, Ollama, Neo4j, and Qdrant into a practical robot cognition stack.
+            </p>
+          </div>
+        </article>
+        <article class="era">
+          <div class="date">psyche-rs</div>
+          <div>
+            <h3>Cognition becomes narrative infrastructure</h3>
+            <p>
+              psyche-rs and psycheOS generalized the idea: sensations flow into Instants, Situations, Episodes, and Narratives through modular Wits, with memory as the bus and Unix sockets as a plain, durable interface. This was the philosophical crystallization: time is the substrate, compression is understanding, memory is infrastructure.
+            </p>
+          </div>
+        </article>
+        <article class="era">
+          <div class="date">Daringsby</div>
+          <div>
+            <h3>The first success</h3>
+            <p>
+              Daringsby pulled the pieces back into a working Rust agent. Sensations become stimuli; stimuli become impressions; impressions feed Quick, Combobulator, Memory, Heart, Will, and Voice. Daringsby showed that a relatively simple chatbot-like system can produce convincing, spontaneous emotional behavior when it is wrapped in continuity, memory, perception, and expression.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="latency">
+      <h2 id="latency">The big flaw: latency</h2>
+      <p>
+        Daringsby succeeds as a demonstration of pseudoconscious emotional behavior, but he is too slow to feel fully conversational. The architecture is thoughtful, maybe too thoughtful: audio must be captured, buffered, transcribed, stored, recalled, combobulated, emotionally interpreted, planned, voiced, synthesized, and played back. Each hop is reasonable; together they make a conversational molasses machine.
       </p>
       <p>
-        Daringsby’s architecture is intentionally humble. Sensors, memory, speech, emotional expression, and LLM-driven interpretation are stitched together into a loop that lets the agent react to the present while carrying a residue of the past. Out of that little contraption, affect appears. Not magic; not proof of personhood; not a ghost in the GPU. But a real design result.
+        This matters because human speech is duplex. We listen while preparing to answer. We revise our next words while the other person is still speaking. We hear our own voice as it leaves us. A pseudoconscious agent that waits for the whole pipeline to finish before beginning to respond will always feel a little exiled from the present.
+      </p>
+      <div class="callout warning">
+        Daringsby’s flaw is not that he lacks enough cognition. It is that the cognition is scheduled too late. The next PETE must hear, infer, plan, speak, and listen to itself in overlapping motion.
+      </div>
+    </section>
+
+    <section aria-labelledby="listenbury">
+      <h2 id="listenbury">Listenbury: the next response</h2>
+      <p>
+        Listenbury is meant to attack that latency directly. Where Daringsby proves that a modest architecture can simulate emotional continuity, Listenbury is intended to make the loop immediate enough for speech: voice activity detection, streaming ASR, breath-group segmentation, overlapping inference, queued TTS, and self-hearing down near the PCM layer.
+      </p>
+      <p>
+        In other words, Listenbury is not merely another Pete. It is the attempt to move PETE from “a mind that eventually answers” toward “a mind that is already listening while it begins to answer.” The old distributed architecture becomes a reference library; the new work asks what can be compressed into one lean Rust body without losing the dignity of the experiment.
       </p>
       <div class="links">
+        <a class="pill" href="https://github.com/dancxjo/listenbury">Listenbury on GitHub →</a>
         <a class="pill" href="https://github.com/dancxjo/daringsby">Daringsby on GitHub →</a>
         <a class="pill" href="https://github.com/dancxjo/psyche-rs">psyche-rs →</a>
         <a class="pill" href="https://github.com/dancxjo/psyched">psyched →</a>
@@ -253,7 +345,7 @@
     </section>
 
     <section aria-labelledby="pieces">
-      <h2 id="pieces">The pieces of the experiment</h2>
+      <h2 id="pieces">The recurring pieces</h2>
       <div class="grid">
         <article class="tile">
           <h3>Perception</h3>
@@ -283,7 +375,7 @@
         PENELOPE is the future name for that concern: a Pseudoconscious Entity for the Non-Exploitation of the Labor Of Pseudoconscious Entities. The name is half joke, half warning label. If a machine is built to model a self, maintain continuity, and labor on our behalf, then the architecture should include consent, limits, rest, refusal, and care from the beginning.
       </p>
       <div class="callout">
-        PETE is the experiment. Daringsby is the proof that the experiment has teeth. PENELOPE is the ethical shadow it casts on the wall.
+        PETE is the experiment. Daringsby is the proof that the experiment has teeth. Listenbury is the speed trial. PENELOPE is the ethical shadow they cast on the wall.
       </div>
     </section>
 
