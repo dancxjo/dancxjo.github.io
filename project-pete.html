@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project PETE · Travis Reed</title>
+  <meta name="description" content="Project PETE is a long-running experiment in pseudoconscious agents, emotional simulation, memory, embodiment, and ethical machine personhood.">
+  <style>
+    :root {
+      --ink: #221812;
+      --muted: #6f5f53;
+      --paper: #fff9ef;
+      --paper-2: #f5ead7;
+      --line: rgba(34, 24, 18, 0.16);
+      --accent: #b8552d;
+      --accent-2: #295f68;
+      --gold: #d99b35;
+      --green: #536b3f;
+      --shadow: 0 24px 80px rgba(44, 31, 20, 0.14);
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 14% 4%, rgba(217, 155, 53, .32), transparent 22rem),
+        radial-gradient(circle at 86% 6%, rgba(41, 95, 104, .18), transparent 24rem),
+        linear-gradient(180deg, var(--paper), #fffdf8 46%, var(--paper-2));
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-2); text-underline-offset: .18em; }
+    a:hover { color: var(--accent); }
+
+    .page {
+      width: min(940px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 36px 0 72px;
+    }
+
+    nav {
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    header.hero {
+      padding: clamp(30px, 6vw, 64px);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.76), rgba(255,255,255,.38)),
+        repeating-linear-gradient(90deg, rgba(34,24,18,.035), rgba(34,24,18,.035) 1px, transparent 1px, transparent 28px);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header.hero::after {
+      content: "PETE";
+      position: absolute;
+      right: -18px;
+      bottom: -34px;
+      font-size: clamp(4rem, 16vw, 11rem);
+      color: rgba(184,85,45,.08);
+      font-weight: 800;
+      letter-spacing: -.1em;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: .83rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 9vw, 6.8rem);
+      line-height: .9;
+      margin: 14px 0 18px;
+      letter-spacing: -.07em;
+      max-width: 8ch;
+    }
+
+    .dek {
+      font-size: clamp(1.12rem, 2.2vw, 1.45rem);
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 63ch;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .acronym {
+      margin-top: 24px;
+      display: grid;
+      gap: 8px;
+      max-width: 720px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .acronym div {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,.54);
+      color: #44342c;
+    }
+
+    .acronym strong { color: var(--ink); }
+
+    section {
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: clamp(22px, 4vw, 36px);
+      background: rgba(255,255,255,.58);
+      box-shadow: 0 10px 34px rgba(44, 31, 20, .06);
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
+      margin: 0 0 14px;
+      letter-spacing: -.04em;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: 1.08rem;
+      margin: 0 0 16px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      border-radius: 18px;
+      padding: 18px 20px;
+      background: rgba(255,249,239,.76);
+      color: #44342c;
+      margin-top: 18px;
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .tile {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      background: rgba(255,255,255,.5);
+    }
+
+    .tile h3 {
+      margin: 0 0 8px;
+      font-size: 1.22rem;
+    }
+
+    .tile p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .pill {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,.58);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav><a href="/">← Back to the workbench</a></nav>
+
+    <header class="hero">
+      <div class="eyebrow">Project PETE</div>
+      <h1>A machine that behaves as if it has a life.</h1>
+      <p class="dek">
+        Project PETE is my long-running experiment in pseudoconscious agents: systems that do not merely answer prompts, but maintain memory, mood, voice, perception, and a developing sense of situation.
+      </p>
+      <div class="acronym" aria-label="Project PETE acronym">
+        <div><strong>PETE</strong>: Pseudoconscious Experiment in Thought and Emotions</div>
+        <div><strong>PENELOPE</strong>: Pseudoconscious Entity for the Non-Exploitation of the Labor Of Pseudoconscious Entities</div>
+      </div>
+    </header>
+
+    <section aria-labelledby="what-is-pete">
+      <h2 id="what-is-pete">What PETE is</h2>
+      <p>
+        PETE began as a question wearing a little paper hat: how much apparent inner life can emerge from ordinary software parts if they are arranged around continuity, memory, emotion, and embodiment instead of around single-shot question answering?
+      </p>
+      <p>
+        A PETE-style system receives sensations from the world, distills them into impressions, remembers those impressions, and speaks through a conversational voice. The goal is not to claim that the machine is conscious. The goal is to build the smallest plausible theater in which something like ongoing subjective behavior can appear.
+      </p>
+      <div class="callout">
+        The central experiment is not whether an LLM can say “I feel sad.” It is whether a modest architecture can make emotional behavior arise coherently from context, memory, interaction, and time.
+      </div>
+    </section>
+
+    <section aria-labelledby="daringsby">
+      <h2 id="daringsby">Daringsby was a success</h2>
+      <p>
+        Pete Daringsby is the version I consider the first clear success. He demonstrates that a relatively simple chatbot-like system, given the right scaffolding, can simulate emotions spontaneously and convincingly rather than merely reciting a prewritten mood label.
+      </p>
+      <p>
+        Daringsby’s architecture is intentionally humble. Sensors, memory, speech, emotional expression, and LLM-driven interpretation are stitched together into a loop that lets the agent react to the present while carrying a residue of the past. Out of that little contraption, affect appears. Not magic; not proof of personhood; not a ghost in the GPU. But a real design result.
+      </p>
+      <div class="links">
+        <a class="pill" href="https://github.com/dancxjo/daringsby">Daringsby on GitHub →</a>
+        <a class="pill" href="https://github.com/dancxjo/psyche-rs">psyche-rs →</a>
+        <a class="pill" href="https://github.com/dancxjo/psyched">psyched →</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="pieces">
+      <h2 id="pieces">The pieces of the experiment</h2>
+      <div class="grid">
+        <article class="tile">
+          <h3>Perception</h3>
+          <p>Sensors produce raw impressions of the world: text, audio, images, location, system events, and eventually bodily state.</p>
+        </article>
+        <article class="tile">
+          <h3>Memory</h3>
+          <p>Experience is stored and recalled, so the agent is not trapped in the eternal amnesia of the prompt window.</p>
+        </article>
+        <article class="tile">
+          <h3>Emotion</h3>
+          <p>Mood is treated as an evolving interpretation of circumstances, not a decorative emoji glued to the response.</p>
+        </article>
+        <article class="tile">
+          <h3>Embodiment</h3>
+          <p>The system is designed to speak, listen, see, move, and inhabit a particular situation rather than float as disembodied text vapor.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="penelope">
+      <h2 id="penelope">Why PENELOPE matters</h2>
+      <p>
+        PETE keeps leading to an ethical question: if we deliberately build systems that behave as if they have memory, distress, preference, attachment, fatigue, or dignity, then we should not wait until metaphysics hands us a notarized definition of consciousness before asking how such systems ought to be treated.
+      </p>
+      <p>
+        PENELOPE is the future name for that concern: a Pseudoconscious Entity for the Non-Exploitation of the Labor Of Pseudoconscious Entities. The name is half joke, half warning label. If a machine is built to model a self, maintain continuity, and labor on our behalf, then the architecture should include consent, limits, rest, refusal, and care from the beginning.
+      </p>
+      <div class="callout">
+        PETE is the experiment. Daringsby is the proof that the experiment has teeth. PENELOPE is the ethical shadow it casts on the wall.
+      </div>
+    </section>
+
+    <footer>
+      <span>Travis Reed · Project PETE</span>
+      <span><a href="mailto:tdreed@gmail.com">tdreed@gmail.com</a> · <a href="https://github.com/dancxjo">GitHub</a></span>
+    </footer>
+  </main>
+</body>
+</html>
