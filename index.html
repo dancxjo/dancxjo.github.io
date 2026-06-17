@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Travis Reed · systems, agents, odd clocks</title>
-  <meta name="description" content="A small portfolio for Travis Reed: ThingOS, Project PETE, psycheOS, and decimal-time clocks.">
+  <meta name="description" content="A small portfolio for Travis Reed: ThingOS, Project PETE, Tongues, and experimental systems for language, cognition, and machine agency.">
   <style>
     :root {
       --ink: #221812;
@@ -232,6 +232,58 @@
       text-decoration: none;
     }
 
+    .synthesis {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .synthesis .panel p {
+      color: var(--muted);
+      line-height: 1.58;
+      margin: 0 0 16px;
+    }
+
+    .synthesis .panel p:last-child { margin-bottom: 0; }
+
+    .pipeline {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .pipeline-step {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.5);
+      padding: 14px 16px;
+    }
+
+    .pipeline-step strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .pipeline-step span {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .example-box {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(34, 24, 18, .055);
+      color: #30221b;
+      padding: 18px;
+      line-height: 1.45;
+      overflow-x: auto;
+      margin: 18px 0;
+    }
+
     .lab {
       display: grid;
       grid-template-columns: .75fr 1.25fr;
@@ -286,7 +338,7 @@
     }
 
     @media (max-width: 900px) {
-      header.hero, .lab { grid-template-columns: 1fr; }
+      header.hero, .lab, .synthesis { grid-template-columns: 1fr; }
       .projects, .notes { grid-template-columns: 1fr; }
       .project:nth-child(2) { transform: none; }
       .clock-wrap { grid-template-columns: 1fr; }
@@ -310,14 +362,14 @@
         <strong>Current orbit</strong>
         <p>
           Rust, TypeScript, microkernels, agentic cognition, graph memory, UI composition,
-          and tools that treat meaning as a first-class system resource.
+          neural speech tools, and systems that treat meaning as a first-class resource.
         </p>
         <div class="tag-cloud">
           <span class="tag">Rust</span>
           <span class="tag">TypeScript</span>
           <span class="tag">LLMs</span>
-          <span class="tag">Neo4j</span>
-          <span class="tag">Qdrant</span>
+          <span class="tag">phonology</span>
+          <span class="tag">synthetic data</span>
           <span class="tag">microkernels</span>
           <span class="tag">Wayland-ish UI</span>
         </div>
@@ -366,22 +418,74 @@
 
         <article class="project">
           <div class="mark">☿</div>
-          <div class="subtitle">a narrative cognitive OS</div>
-          <h3><a href="https://github.com/dancxjo/psyched">psyched</a></h3>
-          <div class="subtitle">recursive summarization for machine cognition</div>
+          <h3><a href="https://github.com/dancxjo/tongues">Tongues</a></h3>
+          <div class="subtitle">mechanical linguistics into neural speech tools</div>
           <p>
-            Experiments in recursive summarization, graph databases, and vector stores as
-            building blocks for cognition. Raw events are compressed into higher-level
-            summaries, linked into memory, and made searchable by meaning.
+            A Rust toolkit for neural lexical and speech-front-end models: grapheme to
+            phonology, phonology back to spelling, multilingual Wiktionary tasks,
+            sentence parsing, and the speech layers needed by streaming agents.
           </p>
           <ul>
-            <li>Layered summaries from raw input to durable context</li>
-            <li>Graph links for entities, events, and relationships</li>
-            <li>Vector recall for fuzzy, meaning-based memory</li>
+            <li>G2P, P2G, phones, phonemes, and realization tasks</li>
+            <li>Wiktionary-scale multilingual pronunciation modeling</li>
+            <li>Synthetic correction rows from rule-system failures</li>
           </ul>
-          <a class="project-link" href="https://github.com/dancxjo/psyche-os">Open project →</a>
-          <a class="project-link" href="https://github.com/dancxjo/psyched">Open project →</a>
+          <a class="project-link" href="https://github.com/dancxjo/tongues">Open project →</a>
         </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="synthesis-title">
+      <div class="section-title">
+        <h2 id="synthesis-title">Mechanical synthesis, neural speed</h2>
+        <p>One current thread: use explicit linguistic machinery to manufacture the examples that small neural models can later run cheaply.</p>
+      </div>
+      <div class="synthesis">
+        <div class="panel">
+          <h3>What we are building</h3>
+          <p>
+            Tongues is exploring a simple wager: if a slow, inspectable rule system can
+            label text, split sentences, normalize words, infer pronunciations, and catch
+            its own mistakes, then it can also become a teacher. The mechanical system
+            generates rows. The neural model studies those rows until it can imitate the
+            behavior at inference speed.
+          </p>
+          <p>
+            This is not just synthetic data in the usual sense. It is a curriculum made
+            from the places where deterministic machinery breaks, disagrees, or exposes
+            a useful edge case: abbreviations, quotations, sentence boundaries, function
+            words, dialect tags, phoneme versus phone notation, and schema errors.
+          </p>
+          <div class="example-box">rule system → synthetic rows → verifier → failure cases
+       ↘                                    ↙
+        small model learns the pattern</div>
+          <p>
+            The goal is to distill careful linguistic scaffolding into compact models that
+            are fast enough for streaming speech, repair, pronunciation, and agentic voice
+            interfaces.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>The ratchet</h3>
+          <div class="pipeline" aria-label="mechanical synthesis pipeline">
+            <div class="pipeline-step">
+              <strong>1. Build the slow teacher</strong>
+              <span>Sentence detectors, G2P helpers, Wiktionary parsers, normalizers, validators, and hand-written repair logic make behavior explicit.</span>
+            </div>
+            <div class="pipeline-step">
+              <strong>2. Generate difficult examples</strong>
+              <span>The teacher creates ordinary rows and adversarial-ish rows: bad cuts, missing heads, malformed tags, language mismatches, and known pronunciation traps.</span>
+            </div>
+            <div class="pipeline-step">
+              <strong>3. Train the neural approximation</strong>
+              <span>Small seq2seq models learn the input-output behavior without needing to run the whole symbolic apparatus at runtime.</span>
+            </div>
+            <div class="pipeline-step">
+              <strong>4. Feed failures back in</strong>
+              <span>When the model or verifier finds a new weirdness, that weirdness becomes another specimen for the next training pass.</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -427,8 +531,8 @@
           <p>Agents need durable context, not just chat history. Recall belongs in the architecture, not as garnish.</p>
         </article>
         <article class="note">
-          <h3>Oddness is a design signal</h3>
-          <p>The peculiar experiments often reveal the serious abstractions hiding underneath.</p>
+          <h3>Failure is curriculum</h3>
+          <p>Contradictions, bad splits, malformed outputs, and verifier complaints are not just bugs. They are training specimens.</p>
         </article>
       </div>
     </section>
