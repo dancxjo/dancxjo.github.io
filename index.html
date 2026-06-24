@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Travis Reed · systems, agents, odd clocks</title>
-  <meta name="description" content="A small portfolio for Travis Reed: ThingOS, Project PETE, Tongues, and experimental systems for language, cognition, and machine agency.">
+  <title>Travis Reed · AI systems, speech, robotics, operating systems</title>
+  <meta name="description" content="Portfolio for Travis Reed: embodied AI systems, speech and pronunciation tools, experimental operating systems, and language infrastructure.">
   <style>
     :root {
       --ink: #221812;
@@ -78,11 +78,11 @@
     }
 
     h1 {
-      font-size: clamp(3rem, 8vw, 7.2rem);
-      line-height: .88;
+      font-size: clamp(2.8rem, 7.4vw, 6.7rem);
+      line-height: .9;
       margin: 14px 0 18px;
       letter-spacing: -.07em;
-      max-width: 9ch;
+      max-width: 11ch;
     }
 
     .hero p {
@@ -91,6 +91,31 @@
       color: var(--muted);
       max-width: 66ch;
       margin: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,.58);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
     }
 
     .hero-card {
@@ -127,6 +152,31 @@
 
     section { margin-top: 54px; }
 
+    .signal-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .signal {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px;
+      background: rgba(255,255,255,.52);
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: .96rem;
+    }
+
     .section-title {
       display: flex;
       justify-content: space-between;
@@ -144,7 +194,7 @@
     .section-title p {
       color: var(--muted);
       margin: 0;
-      max-width: 48ch;
+      max-width: 50ch;
       line-height: 1.45;
     }
 
@@ -159,7 +209,7 @@
       border-radius: 26px;
       padding: 24px;
       background: rgba(255,255,255,.58);
-      min-height: 390px;
+      min-height: 460px;
       display: flex;
       flex-direction: column;
       box-shadow: 0 10px 34px rgba(44, 31, 20, .08);
@@ -232,20 +282,20 @@
       text-decoration: none;
     }
 
-    .synthesis {
+    .synthesis, .lab, .strengths {
       display: grid;
       grid-template-columns: .95fr 1.05fr;
       gap: 18px;
       align-items: stretch;
     }
 
-    .synthesis .panel p {
+    .synthesis .panel p, .strengths .panel p, .lab .panel p {
       color: var(--muted);
       line-height: 1.58;
       margin: 0 0 16px;
     }
 
-    .synthesis .panel p:last-child { margin-bottom: 0; }
+    .synthesis .panel p:last-child, .strengths .panel p:last-child, .lab .panel p:last-child { margin-bottom: 0; }
 
     .pipeline {
       display: grid;
@@ -284,13 +334,6 @@
       margin: 18px 0;
     }
 
-    .lab {
-      display: grid;
-      grid-template-columns: .75fr 1.25fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
     .panel {
       border: 1px solid var(--line);
       border-radius: 26px;
@@ -298,6 +341,22 @@
       background: rgba(255,255,255,.58);
       box-shadow: 0 10px 34px rgba(44, 31, 20, .06);
     }
+
+    .skill-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .skill-list div {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(255,255,255,.5);
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .skill-list strong { display: block; margin-bottom: 4px; }
+    .skill-list span { color: var(--muted); line-height: 1.45; }
 
     .clock-wrap {
       display: grid;
@@ -326,6 +385,31 @@
     .note h3 { margin: 0 0 8px; font-size: 1.2rem; }
     .note p { margin: 0; color: var(--muted); line-height: 1.5; }
 
+    .callout {
+      border: 1px solid rgba(184,85,45,.28);
+      border-radius: 28px;
+      padding: 26px;
+      background: rgba(255,255,255,.66);
+      display: flex;
+      justify-content: space-between;
+      gap: 22px;
+      align-items: center;
+      box-shadow: 0 14px 50px rgba(44, 31, 20, .08);
+    }
+
+    .callout h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: -.04em;
+    }
+
+    .callout p {
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+      max-width: 66ch;
+    }
+
     footer {
       margin-top: 56px;
       padding-top: 28px;
@@ -338,10 +422,12 @@
     }
 
     @media (max-width: 900px) {
-      header.hero, .lab, .synthesis { grid-template-columns: 1fr; }
-      .projects, .notes { grid-template-columns: 1fr; }
+      header.hero, .lab, .synthesis, .strengths { grid-template-columns: 1fr; }
+      .projects, .notes, .signal-strip { grid-template-columns: 1fr; }
       .project:nth-child(2) { transform: none; }
       .clock-wrap { grid-template-columns: 1fr; }
+      .callout { display: block; }
+      .callout .hero-actions { margin-top: 18px; }
     }
   </style>
 </head>
@@ -349,52 +435,69 @@
   <main class="page">
     <header class="hero">
       <div>
-        <div class="eyebrow">Travis Reed · Seattle</div>
-        <h1>Small machines for strange futures.</h1>
+        <div class="eyebrow">Travis Reed · Seattle · AI systems engineer</div>
+        <h1>I build embodied AI systems, speech tools, and experimental operating systems.</h1>
         <p>
-          I build experimental systems where operating systems, embodied agents, language,
-          memory graphs, and slightly unhinged clocks all share a table. The work is part
-          software architecture, part cognitive sketchbook, part basement laboratory with a
-          good type system.
+          I connect low-level systems engineering with modern AI: agents that listen and remember,
+          speech and pronunciation pipelines, simulation-ready robotics experiments, and typed
+          infrastructure for strange but practical machines.
         </p>
+        <div class="hero-actions" aria-label="contact links">
+          <a class="button primary" href="mailto:tdreed@gmail.com">Email me</a>
+          <a class="button" href="https://github.com/dancxjo">GitHub</a>
+          <a class="button" href="#projects-title">See projects</a>
+        </div>
       </div>
       <aside class="hero-card" aria-label="current focus">
-        <strong>Current orbit</strong>
+        <strong>Open to roles in</strong>
         <p>
-          Rust, TypeScript, microkernels, agentic cognition, graph memory, UI composition,
-          neural speech tools, and systems that treat meaning as a first-class resource.
+          AI systems engineering, speech AI, robotics and simulation, ML infrastructure,
+          developer tooling, and platform work in Seattle or remote.
         </p>
         <div class="tag-cloud">
           <span class="tag">Rust</span>
+          <span class="tag">Python</span>
           <span class="tag">TypeScript</span>
           <span class="tag">LLMs</span>
-          <span class="tag">phonology</span>
+          <span class="tag">speech pipelines</span>
+          <span class="tag">embodied agents</span>
           <span class="tag">synthetic data</span>
           <span class="tag">microkernels</span>
-          <span class="tag">Wayland-ish UI</span>
         </div>
       </aside>
     </header>
 
+    <section aria-labelledby="signal-title">
+      <div class="section-title">
+        <h2 id="signal-title">What I am good at</h2>
+        <p>The short version for recruiters, hiring managers, and curious engineers passing through.</p>
+      </div>
+      <div class="signal-strip">
+        <div class="signal"><strong>AI systems</strong><span>LLM agents, local inference, memory, evaluation loops, and model-facing services.</span></div>
+        <div class="signal"><strong>Speech and language</strong><span>G2P, phonology, IPA, pronunciation data, ASR/TTS plumbing, and streaming voice interfaces.</span></div>
+        <div class="signal"><strong>Systems engineering</strong><span>Rust, Go, Linux, IPC, drivers, async services, typed messages, and composable architecture.</span></div>
+        <div class="signal"><strong>Product delivery</strong><span>TypeScript, React, APIs, cloud services, observability, and cross-functional engineering.</span></div>
+      </div>
+    </section>
+
     <section aria-labelledby="projects-title">
       <div class="section-title">
-        <h2 id="projects-title">Featured projects</h2>
-        <p>Three large experiments, each trying to make computers a little less inert and a little more world-aware.</p>
+        <h2 id="projects-title">Featured case studies</h2>
+        <p>Three large experiments, framed as engineering work rather than loose sparks on the bench.</p>
       </div>
       <div class="projects">
         <article class="project">
           <div class="mark">✺</div>
           <h3><a href="https://github.com/dancxjo/thingos">ThingOS</a></h3>
-          <div class="subtitle">a typed-world operating system</div>
+          <div class="subtitle">experimental operating system architecture</div>
           <p>
             A custom OS project exploring microkernel architecture, userspace drivers,
-            VFS-first services, typed messages, and a botanical stack of components from
-            boot to compositor.
+            VFS-first services, typed messages, and interface composition from boot to compositor.
           </p>
           <ul>
-            <li>Kernel scheduling, IPC channels, wait sets</li>
-            <li>VirtIO display and sound driver work</li>
-            <li>Bloom, Blossom, Petals, Stile UI experiments</li>
+            <li><strong>Problem:</strong> make system services legible, typed, and composable</li>
+            <li><strong>Built:</strong> scheduling, IPC channels, wait sets, and device-facing services</li>
+            <li><strong>Tech:</strong> Rust, kernel work, VirtIO, VFS, display and sound experiments</li>
           </ul>
           <a class="project-link" href="https://github.com/dancxjo/thingos">Open project →</a>
         </article>
@@ -402,16 +505,15 @@
         <article class="project">
           <div class="mark">◌</div>
           <h3><a href="project-pete.html">Project PETE</a></h3>
-          <div class="subtitle">pseudoconscious thought and emotion</div>
+          <div class="subtitle">embodied AI cognition platform</div>
           <p>
-            PETE stands for Pseudoconscious Experiment in Thought and Emotions. Daringsby
-            is the successful proof-of-concept: a modest chatbot-like system that can
-            produce coherent, spontaneous emotional behavior from memory, mood, and context.
+            An architecture for agents that integrate perception, memory, mood and state,
+            speech, and action over time, now moving toward physical robotics and simulation.
           </p>
           <ul>
-            <li>Daringsby as successful emotional simulation</li>
-            <li>Memory, voice, mood, perception, and embodiment</li>
-            <li>PENELOPE as the future ethical horizon</li>
+            <li><strong>Problem:</strong> move beyond stateless chat into situated behavior</li>
+            <li><strong>Built:</strong> memory, voice, mood, perception, and embodiment experiments</li>
+            <li><strong>Tech:</strong> Rust, LLMs, ASR/TTS, Kinect data, robotics control loops</li>
           </ul>
           <a class="project-link" href="project-pete.html">Read the PETE page →</a>
         </article>
@@ -419,16 +521,15 @@
         <article class="project">
           <div class="mark">☿</div>
           <h3><a href="https://github.com/dancxjo/tongues">Tongues</a></h3>
-          <div class="subtitle">mechanical linguistics into neural speech tools</div>
+          <div class="subtitle">Rust ML for pronunciation and speech tools</div>
           <p>
-            A Rust toolkit for neural lexical and speech-front-end models: grapheme to
-            phonology, phonology back to spelling, multilingual Wiktionary tasks,
-            sentence parsing, and the speech layers needed by streaming agents.
+            A Rust toolkit for neural lexical and speech-front-end models: grapheme to phonology,
+            phonology back to spelling, multilingual Wiktionary tasks, and sentence parsing.
           </p>
           <ul>
-            <li>G2P, P2G, phones, phonemes, and realization tasks</li>
-            <li>Wiktionary-scale multilingual pronunciation modeling</li>
-            <li>Synthetic correction rows from rule-system failures</li>
+            <li><strong>Problem:</strong> turn messy language data into trainable speech tasks</li>
+            <li><strong>Built:</strong> G2P/P2G datasets, validators, normalizers, and correction rows</li>
+            <li><strong>Tech:</strong> Rust, Burn, seq2seq, IPA, Wiktionary-scale data</li>
           </ul>
           <a class="project-link" href="https://github.com/dancxjo/tongues">Open project →</a>
         </article>
@@ -438,31 +539,27 @@
     <section aria-labelledby="synthesis-title">
       <div class="section-title">
         <h2 id="synthesis-title">Mechanical synthesis, neural speed</h2>
-        <p>One current thread: use explicit linguistic machinery to manufacture the examples that small neural models can later run cheaply.</p>
+        <p>A concrete AI pattern I keep returning to: build a slow, inspectable teacher, then distill its behavior into compact neural models.</p>
       </div>
       <div class="synthesis">
         <div class="panel">
-          <h3>What we are building</h3>
+          <h3>What this demonstrates</h3>
           <p>
-            Tongues is exploring a simple wager: if a slow, inspectable rule system can
-            label text, split sentences, normalize words, infer pronunciations, and catch
-            its own mistakes, then it can also become a teacher. The mechanical system
-            generates rows. The neural model studies those rows until it can imitate the
-            behavior at inference speed.
+            Tongues uses deterministic linguistic machinery to label text, split sentences,
+            normalize words, infer pronunciations, and catch its own mistakes. Those failures
+            become training examples for smaller models that can run cheaply at inference time.
           </p>
           <p>
-            This is not just synthetic data in the usual sense. It is a curriculum made
-            from the places where deterministic machinery breaks, disagrees, or exposes
-            a useful edge case: abbreviations, quotations, sentence boundaries, function
-            words, dialect tags, phoneme versus phone notation, and schema errors.
+            This is more than synthetic data. It is a curriculum made from edge cases:
+            abbreviations, quotations, sentence boundaries, function words, dialect tags,
+            phoneme versus phone notation, and schema errors.
           </p>
           <div class="example-box">rule system → synthetic rows → verifier → failure cases
        ↘                                    ↙
         small model learns the pattern</div>
           <p>
-            The goal is to distill careful linguistic scaffolding into compact models that
-            are fast enough for streaming speech, repair, pronunciation, and agentic voice
-            interfaces.
+            The goal is practical: compact models for streaming speech, repair, pronunciation,
+            and agentic voice interfaces.
           </p>
         </div>
         <div class="panel">
@@ -470,7 +567,7 @@
           <div class="pipeline" aria-label="mechanical synthesis pipeline">
             <div class="pipeline-step">
               <strong>1. Build the slow teacher</strong>
-              <span>Sentence detectors, G2P helpers, Wiktionary parsers, normalizers, validators, and hand-written repair logic make behavior explicit.</span>
+              <span>Sentence detectors, G2P helpers, Wiktionary parsers, normalizers, validators, and repair logic make behavior explicit.</span>
             </div>
             <div class="pipeline-step">
               <strong>2. Generate difficult examples</strong>
@@ -482,36 +579,34 @@
             </div>
             <div class="pipeline-step">
               <strong>4. Feed failures back in</strong>
-              <span>When the model or verifier finds a new weirdness, that weirdness becomes another specimen for the next training pass.</span>
+              <span>When the model or verifier finds a new irregularity, that irregularity becomes another specimen for the next training pass.</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section aria-labelledby="lab-title">
+    <section aria-labelledby="strengths-title">
       <div class="section-title">
-        <h2 id="lab-title">Clock laboratory</h2>
-        <p>The original exhibit remains: decimal time and balanced quartovigesimal time, still ticking in the corner like numerological furniture.</p>
+        <h2 id="strengths-title">Selected technical strengths</h2>
+        <p>The bridge between the experiments and production engineering roles.</p>
       </div>
-      <div class="lab">
+      <div class="strengths">
         <div class="panel">
-          <h3>Why clocks?</h3>
-          <p>
-            Because timekeeping is interface design with celestial consequences. Change the
-            base, change the markings, change the words, and suddenly the day becomes a
-            different machine.
-          </p>
+          <h3>Systems</h3>
+          <div class="skill-list">
+            <div><strong>Languages</strong><span>Rust, Go, Python, TypeScript, JavaScript, C#, SQL</span></div>
+            <div><strong>Platforms</strong><span>Linux, cloud services, async runtimes, APIs, message passing, local inference machines</span></div>
+            <div><strong>Architecture</strong><span>microservices, typed boundaries, observability, developer tooling, data pipelines</span></div>
+          </div>
         </div>
-        <div class="panel clock-wrap">
-          <figure>
-            <object type="image/svg+xml" data="clock.svg">Decimal clock</object>
-            <figcaption>A decimal-time clock, for the part of the mind that suspects ten should have conquered the afternoon.</figcaption>
-          </figure>
-          <figure>
-            <object type="image/svg+xml" data="clock24.svg" id="clock24">Quartovigesimal clock</object>
-            <figcaption>A balanced quartovigesimal clock: dozenal-adjacent, Roman-corrupted, and oddly persuasive.</figcaption>
-          </figure>
+        <div class="panel">
+          <h3>AI and speech</h3>
+          <div class="skill-list">
+            <div><strong>Agents</strong><span>LLM orchestration, memory, tool use, mood/state modeling, embodied control loops</span></div>
+            <div><strong>Speech</strong><span>ASR/TTS integration, phonology, IPA, pronunciation modeling, streaming voice interfaces</span></div>
+            <div><strong>ML workflows</strong><span>synthetic data, dataset generation, validation, evaluation loops, small neural models</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -519,7 +614,7 @@
     <section aria-labelledby="notes-title">
       <div class="section-title">
         <h2 id="notes-title">Working principles</h2>
-        <p>Not quite a manifesto. More like field notes from the workbench.</p>
+        <p>Field notes from the workbench, minus the smoke machine.</p>
       </div>
       <div class="notes">
         <article class="note">
@@ -537,8 +632,48 @@
       </div>
     </section>
 
+    <section aria-labelledby="lab-title">
+      <div class="section-title">
+        <h2 id="lab-title">Other experiments</h2>
+        <p>The clock laboratory remains, now properly tucked into the cabinet of delightful instruments.</p>
+      </div>
+      <div class="lab">
+        <div class="panel">
+          <h3>Clock laboratory</h3>
+          <p>
+            Timekeeping is interface design with celestial consequences. Change the base,
+            change the markings, change the words, and the day becomes a different machine.
+          </p>
+        </div>
+        <div class="panel clock-wrap">
+          <figure>
+            <object type="image/svg+xml" data="clock.svg">Decimal clock</object>
+            <figcaption>A decimal-time clock, for the part of the mind that suspects ten should have conquered the afternoon.</figcaption>
+          </figure>
+          <figure>
+            <object type="image/svg+xml" data="clock24.svg" id="clock24">Quartovigesimal clock</object>
+            <figcaption>A balanced quartovigesimal clock: dozenal-adjacent, Roman-corrupted, and oddly persuasive.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="contact-title" class="callout">
+      <div>
+        <h2 id="contact-title">I am looking for the right engineering room.</h2>
+        <p>
+          I am open to AI systems, speech, robotics, ML infrastructure, developer tooling,
+          and platform roles where unusual prototypes can become useful software.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href="mailto:tdreed@gmail.com">Contact me</a>
+        <a class="button" href="https://github.com/dancxjo">GitHub</a>
+      </div>
+    </section>
+
     <footer>
-      <span>Travis Reed · systems, education, language, cognition</span>
+      <span>Travis Reed · AI systems, speech, robotics, operating systems</span>
       <span><a href="mailto:tdreed@gmail.com">tdreed@gmail.com</a> · <a href="https://github.com/dancxjo">GitHub</a></span>
     </footer>
   </main>
