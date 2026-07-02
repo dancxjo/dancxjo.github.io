@@ -4,431 +4,68 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Travis Reed · useful strange machines</title>
-  <meta name="description" content="Portfolio for Travis Reed: embodied AI systems, speech and pronunciation tools, experimental operating systems, and language infrastructure.">
+  <meta name="description" content="Portfolio for Travis Reed: embodied AI systems, robotics, speech and pronunciation tools, experimental operating systems, and language infrastructure.">
   <style>
-    :root {
-      --ink: #221812;
-      --muted: #6f5f53;
-      --paper: #fff9ef;
-      --paper-2: #f5ead7;
-      --line: rgba(34, 24, 18, 0.16);
-      --accent: #b8552d;
-      --accent-2: #295f68;
-      --gold: #d99b35;
-      --green: #536b3f;
-      --shadow: 0 24px 80px rgba(44, 31, 20, 0.14);
-      font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 14% 4%, rgba(217, 155, 53, .32), transparent 22rem),
-        radial-gradient(circle at 86% 6%, rgba(41, 95, 104, .18), transparent 24rem),
-        linear-gradient(180deg, var(--paper), #fffdf8 46%, var(--paper-2));
-      min-height: 100vh;
-    }
-
-    a { color: var(--accent-2); text-underline-offset: .18em; }
-    a:hover { color: var(--accent); }
-
-    .page {
-      width: min(1120px, calc(100vw - 32px));
-      margin: 0 auto;
-      padding: 44px 0 72px;
-    }
-
-    header.hero {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 36px;
-      align-items: end;
-      min-height: 54vh;
-      padding: 48px clamp(22px, 5vw, 64px);
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.72), rgba(255,255,255,.36)),
-        repeating-linear-gradient(90deg, rgba(34,24,18,.035), rgba(34,24,18,.035) 1px, transparent 1px, transparent 28px);
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    header.hero::after {
-      content: "";
-      position: absolute;
-      inset: auto -120px -180px auto;
-      width: 420px;
-      height: 420px;
-      border: 32px solid rgba(184,85,45,.11);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      color: var(--accent);
-      font-size: .83rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    h1 {
-      font-size: clamp(2.8rem, 7.4vw, 6.7rem);
-      line-height: .9;
-      margin: 14px 0 18px;
-      letter-spacing: -.07em;
-      max-width: 11ch;
-    }
-
-    .hero p {
-      font-size: clamp(1.08rem, 2vw, 1.35rem);
-      line-height: 1.55;
-      color: var(--muted);
-      max-width: 66ch;
-      margin: 0;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 24px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 10px 14px;
-      background: rgba(255,255,255,.58);
-      color: var(--ink);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .button.primary {
-      background: var(--ink);
-      color: var(--paper);
-      border-color: var(--ink);
-    }
-
-    .hero-card {
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 24px;
-      background: rgba(255, 253, 248, .72);
-      backdrop-filter: blur(8px);
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-card strong {
-      display: block;
-      font-size: 1.05rem;
-      margin-bottom: 12px;
-    }
-
-    .tag-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
-    }
-
-    .tag {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.52);
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: .88rem;
-      color: #3f3028;
-    }
-
-    section { margin-top: 54px; }
-
-    .signal-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .signal {
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 18px;
-      background: rgba(255,255,255,.52);
-    }
-
-    .signal strong {
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .signal span {
-      color: var(--muted);
-      line-height: 1.45;
-      font-size: .96rem;
-    }
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 20px;
-      margin-bottom: 18px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      margin: 0;
-      letter-spacing: -.04em;
-    }
-
-    .section-title p {
-      color: var(--muted);
-      margin: 0;
-      max-width: 50ch;
-      line-height: 1.45;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .project {
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 24px;
-      background: rgba(255,255,255,.58);
-      min-height: 460px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 10px 34px rgba(44, 31, 20, .08);
-    }
-
-    .project:nth-child(2) { transform: translateY(22px); }
-
-    .project .mark {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      font-size: 1.65rem;
-      background: var(--paper-2);
-      border: 1px solid var(--line);
-      margin-bottom: 28px;
-    }
-
-    .project h3 {
-      font-size: 1.75rem;
-      margin: 0 0 8px;
-      letter-spacing: -.03em;
-    }
-
-    .project h3 a {
-      color: inherit;
-      text-decoration-color: rgba(41, 95, 104, .35);
-    }
-
-    .project .subtitle {
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    .project p {
-      color: var(--muted);
-      line-height: 1.55;
-      margin: 0 0 18px;
-    }
-
-    .project ul {
-      margin: auto 0 18px;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 8px;
-      color: #44342c;
-      font-size: .98rem;
-    }
-
-    .project li::before {
-      content: "✦";
-      color: var(--gold);
-      margin-right: 8px;
-    }
-
-    .project-link {
-      display: inline-flex;
-      align-self: flex-start;
-      gap: 6px;
-      align-items: center;
-      margin-top: auto;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 8px 12px;
-      background: rgba(255,255,255,.52);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .synthesis, .lab, .strengths {
-      display: grid;
-      grid-template-columns: .95fr 1.05fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .synthesis .panel p, .strengths .panel p, .lab .panel p {
-      color: var(--muted);
-      line-height: 1.58;
-      margin: 0 0 16px;
-    }
-
-    .synthesis .panel p:last-child, .strengths .panel p:last-child, .lab .panel p:last-child { margin-bottom: 0; }
-
-    .pipeline {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .pipeline-step {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255,255,255,.5);
-      padding: 14px 16px;
-    }
-
-    .pipeline-step strong {
-      display: block;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .pipeline-step span {
-      color: var(--muted);
-      line-height: 1.45;
-    }
-
-    .example-box {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      white-space: pre-wrap;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(34, 24, 18, .055);
-      color: #30221b;
-      padding: 18px;
-      line-height: 1.45;
-      overflow-x: auto;
-      margin: 18px 0;
-    }
-
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 24px;
-      background: rgba(255,255,255,.58);
-      box-shadow: 0 10px 34px rgba(44, 31, 20, .06);
-    }
-
-    .skill-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .skill-list div {
-      border-left: 4px solid var(--accent-2);
-      background: rgba(255,255,255,.5);
-      border-radius: 18px;
-      padding: 14px 16px;
-    }
-
-    .skill-list strong { display: block; margin-bottom: 4px; }
-    .skill-list span { color: var(--muted); line-height: 1.45; }
-
-    .clock-wrap {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(220px, 1fr));
-      gap: 18px;
-      align-items: center;
-    }
-
-    figure { margin: 0; }
-    object { width: 100%; max-width: 360px; display: block; margin: 0 auto; }
-    figcaption { color: var(--muted); line-height: 1.45; font-size: .95rem; margin-top: 12px; }
-
-    .notes {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .note {
-      border-left: 4px solid var(--accent-2);
-      background: rgba(255,255,255,.5);
-      border-radius: 18px;
-      padding: 18px;
-    }
-
-    .note h3 { margin: 0 0 8px; font-size: 1.2rem; }
-    .note p { margin: 0; color: var(--muted); line-height: 1.5; }
-
-    .callout {
-      border: 1px solid rgba(184,85,45,.28);
-      border-radius: 28px;
-      padding: 26px;
-      background: rgba(255,255,255,.66);
-      display: flex;
-      justify-content: space-between;
-      gap: 22px;
-      align-items: center;
-      box-shadow: 0 14px 50px rgba(44, 31, 20, .08);
-    }
-
-    .callout h2 {
-      margin: 0 0 8px;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      letter-spacing: -.04em;
-    }
-
-    .callout p {
-      color: var(--muted);
-      line-height: 1.55;
-      margin: 0;
-      max-width: 66ch;
-    }
-
-    footer {
-      margin-top: 56px;
-      padding-top: 28px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 900px) {
-      header.hero, .lab, .synthesis, .strengths { grid-template-columns: 1fr; }
-      .projects, .notes, .signal-strip { grid-template-columns: 1fr; }
-      .project:nth-child(2) { transform: none; }
-      .clock-wrap { grid-template-columns: 1fr; }
-      .callout { display: block; }
-      .callout .hero-actions { margin-top: 18px; }
-    }
+    :root { --ink:#221812; --muted:#6f5f53; --paper:#fff9ef; --paper-2:#f5ead7; --line:rgba(34,24,18,.16); --accent:#b8552d; --accent-2:#295f68; --gold:#d99b35; --shadow:0 24px 80px rgba(44,31,20,.14); font-family:ui-serif, Georgia, Cambria, "Times New Roman", serif; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:radial-gradient(circle at 14% 4%, rgba(217,155,53,.32), transparent 22rem), radial-gradient(circle at 86% 6%, rgba(41,95,104,.18), transparent 24rem), linear-gradient(180deg,var(--paper),#fffdf8 46%,var(--paper-2)); min-height:100vh; }
+    a { color:var(--accent-2); text-underline-offset:.18em; }
+    a:hover { color:var(--accent); }
+    .page { width:min(1120px, calc(100vw - 32px)); margin:0 auto; padding:44px 0 72px; }
+    header.hero { display:grid; grid-template-columns:1.2fr .8fr; gap:36px; align-items:end; min-height:54vh; padding:48px clamp(22px,5vw,64px); border:1px solid var(--line); border-radius:34px; background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.36)), repeating-linear-gradient(90deg,rgba(34,24,18,.035),rgba(34,24,18,.035) 1px,transparent 1px,transparent 28px); box-shadow:var(--shadow); position:relative; overflow:hidden; }
+    header.hero::after { content:""; position:absolute; inset:auto -120px -180px auto; width:420px; height:420px; border:32px solid rgba(184,85,45,.11); border-radius:50%; pointer-events:none; }
+    .eyebrow { color:var(--accent); font-size:.83rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; }
+    h1 { font-size:clamp(2.8rem,7.4vw,6.7rem); line-height:.9; margin:14px 0 18px; letter-spacing:-.07em; max-width:11ch; }
+    .hero p { font-size:clamp(1.08rem,2vw,1.35rem); line-height:1.55; color:var(--muted); max-width:66ch; margin:0; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .button, .project-link { display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:999px; padding:10px 14px; background:rgba(255,255,255,.58); color:var(--ink); text-decoration:none; font-weight:700; }
+    .button.primary { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+    .hero-card, .panel, .project, .note, .signal { border:1px solid var(--line); background:rgba(255,255,255,.58); box-shadow:0 10px 34px rgba(44,31,20,.06); }
+    .hero-card { border-radius:24px; padding:24px; backdrop-filter:blur(8px); position:relative; z-index:1; }
+    .hero-card strong { display:block; font-size:1.05rem; margin-bottom:12px; }
+    .tag-cloud { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+    .tag { border:1px solid var(--line); background:rgba(255,255,255,.52); border-radius:999px; padding:6px 10px; font-size:.88rem; color:#3f3028; }
+    section { margin-top:54px; }
+    .section-title { display:flex; justify-content:space-between; align-items:baseline; gap:20px; margin-bottom:18px; }
+    .section-title h2 { font-size:clamp(1.8rem,4vw,3rem); margin:0; letter-spacing:-.04em; }
+    .section-title p { color:var(--muted); margin:0; max-width:50ch; line-height:1.45; }
+    .signal-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:18px; }
+    .signal { border-radius:20px; padding:18px; }
+    .signal strong { display:block; margin-bottom:6px; }
+    .signal span, .project p, .panel p, .note p { color:var(--muted); line-height:1.55; }
+    .projects { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .project { border-radius:26px; padding:24px; min-height:460px; display:flex; flex-direction:column; }
+    .project:nth-child(2) { transform:translateY(22px); }
+    .project .mark { width:54px; height:54px; border-radius:18px; display:grid; place-items:center; font-size:1.65rem; background:var(--paper-2); border:1px solid var(--line); margin-bottom:28px; }
+    .project h3 { font-size:1.75rem; margin:0 0 8px; letter-spacing:-.03em; }
+    .project h3 a { color:inherit; text-decoration-color:rgba(41,95,104,.35); }
+    .project .subtitle { color:var(--accent); font-weight:700; margin-bottom:16px; }
+    .project ul { margin:auto 0 18px; padding:0; list-style:none; display:grid; gap:8px; color:#44342c; font-size:.98rem; }
+    .project li::before { content:"✦"; color:var(--gold); margin-right:8px; }
+    .project-link { align-self:flex-start; margin-top:auto; padding:8px 12px; }
+    .synthesis, .lab, .strengths { display:grid; grid-template-columns:.95fr 1.05fr; gap:18px; align-items:stretch; }
+    .panel { border-radius:26px; padding:24px; }
+    .pipeline { display:grid; gap:12px; margin-top:18px; }
+    .pipeline-step { border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.5); padding:14px 16px; }
+    .pipeline-step strong { display:block; color:var(--ink); margin-bottom:4px; }
+    .pipeline-step span { color:var(--muted); line-height:1.45; }
+    .example-box { font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace; white-space:pre-wrap; border:1px solid var(--line); border-radius:20px; background:rgba(34,24,18,.055); color:#30221b; padding:18px; line-height:1.45; overflow-x:auto; margin:18px 0; }
+    .skill-list { display:grid; gap:12px; margin-top:16px; }
+    .skill-list div { border-left:4px solid var(--accent-2); background:rgba(255,255,255,.5); border-radius:18px; padding:14px 16px; }
+    .skill-list strong { display:block; margin-bottom:4px; }
+    .skill-list span { color:var(--muted); line-height:1.45; }
+    .notes { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .note { border-left:4px solid var(--accent-2); border-radius:18px; padding:18px; }
+    .note h3 { margin:0 0 8px; font-size:1.2rem; }
+    .callout { border:1px solid rgba(184,85,45,.28); border-radius:28px; padding:26px; background:rgba(255,255,255,.66); display:flex; justify-content:space-between; gap:22px; align-items:center; box-shadow:0 14px 50px rgba(44,31,20,.08); }
+    .callout h2 { margin:0 0 8px; font-size:clamp(1.6rem,3vw,2.4rem); letter-spacing:-.04em; }
+    .callout p { color:var(--muted); line-height:1.55; margin:0; max-width:66ch; }
+    .clock-wrap { display:grid; grid-template-columns:repeat(2,minmax(220px,1fr)); gap:18px; align-items:center; }
+    figure { margin:0; }
+    object { width:100%; max-width:360px; display:block; margin:0 auto; }
+    figcaption { color:var(--muted); line-height:1.45; font-size:.95rem; margin-top:12px; }
+    footer { margin-top:56px; padding-top:28px; border-top:1px solid var(--line); color:var(--muted); display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+    @media (max-width:900px) { header.hero, .lab, .synthesis, .strengths { grid-template-columns:1fr; } .projects, .notes, .signal-strip { grid-template-columns:1fr; } .project:nth-child(2) { transform:none; } .clock-wrap { grid-template-columns:1fr; } .callout { display:block; } .callout .hero-actions { margin-top:18px; } }
   </style>
 </head>
 <body>
@@ -437,82 +74,50 @@
       <div>
         <div class="eyebrow">Travis Reed · Seattle · AI systems engineer</div>
         <h1>Useful strange machines.</h1>
-        <p>
-          I connect low-level systems engineering with modern AI: agents that listen and remember,
-          speech and pronunciation pipelines, simulation-ready robotics experiments, and typed
-          infrastructure for strange but practical machines.
-        </p>
-        <div class="hero-actions" aria-label="contact links">
-          <a class="button primary" href="mailto:tdreed@gmail.com">Email me</a>
-          <a class="button" href="https://github.com/dancxjo">GitHub</a>
-          <a class="button" href="#projects-title">See projects</a>
-        </div>
+        <p>I connect low-level systems engineering with modern AI: embodied agents that see and map, speech and pronunciation pipelines, experimental operating systems, and typed infrastructure for strange but practical machines.</p>
+        <div class="hero-actions" aria-label="contact links"><a class="button primary" href="mailto:tdreed@gmail.com">Email me</a><a class="button" href="https://github.com/dancxjo">GitHub</a><a class="button" href="#projects-title">See projects</a></div>
       </div>
       <aside class="hero-card" aria-label="current focus">
         <strong>Open to roles in</strong>
-        <p>
-          AI systems engineering, speech AI, robotics and simulation, ML infrastructure,
-          developer tooling, and platform work in Seattle or remote.
-        </p>
-        <div class="tag-cloud">
-          <span class="tag">Rust</span>
-          <span class="tag">Python</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">LLMs</span>
-          <span class="tag">speech pipelines</span>
-          <span class="tag">embodied agents</span>
-          <span class="tag">synthetic data</span>
-          <span class="tag">microkernels</span>
-        </div>
+        <p>AI systems engineering, robotics and simulation, speech AI, ML infrastructure, developer tooling, and platform work in Seattle or remote.</p>
+        <div class="tag-cloud"><span class="tag">Rust</span><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">LLMs</span><span class="tag">speech pipelines</span><span class="tag">embodied agents</span><span class="tag">robot perception</span><span class="tag">microkernels</span></div>
       </aside>
     </header>
 
     <section aria-labelledby="signal-title">
-      <div class="section-title">
-        <h2 id="signal-title">What I am good at</h2>
-        <p>The short version for recruiters, hiring managers, and curious engineers passing through.</p>
-      </div>
+      <div class="section-title"><h2 id="signal-title">What I am good at</h2><p>The short version for recruiters, hiring managers, and curious engineers passing through.</p></div>
       <div class="signal-strip">
         <div class="signal"><strong>AI systems</strong><span>LLM agents, local inference, memory, evaluation loops, and model-facing services.</span></div>
+        <div class="signal"><strong>Robotics perception</strong><span>Kinect RGB/depth, point clouds, colored voxels, map restoration, WebXR inspection, and safe movement loops.</span></div>
         <div class="signal"><strong>Speech and language</strong><span>G2P, phonology, IPA, pronunciation data, ASR/TTS plumbing, and streaming voice interfaces.</span></div>
-        <div class="signal"><strong>Systems engineering</strong><span>Rust, Go, Linux, IPC, drivers, async services, typed messages, and composable architecture.</span></div>
-        <div class="signal"><strong>Product delivery</strong><span>TypeScript, React, APIs, cloud services, observability, and cross-functional engineering.</span></div>
+        <div class="signal"><strong>Systems engineering</strong><span>Rust, Go, Linux, IPC, drivers, async services, typed messages, APIs, and composable architecture.</span></div>
       </div>
     </section>
 
     <section aria-labelledby="projects-title">
-      <div class="section-title">
-        <h2 id="projects-title">Featured case studies</h2>
-        <p>Three large experiments, framed as engineering work rather than loose sparks on the bench.</p>
-      </div>
+      <div class="section-title"><h2 id="projects-title">Featured case studies</h2><p>Three large experiments, framed as engineering work rather than loose sparks on the bench.</p></div>
       <div class="projects">
         <article class="project">
-          <div class="mark">✺</div>
-          <h3><a href="https://github.com/dancxjo/thingos">ThingOS</a></h3>
-          <div class="subtitle">experimental operating system architecture</div>
-          <p>
-            A custom OS project exploring microkernel architecture, userspace drivers,
-            VFS-first services, typed messages, and interface composition from boot to compositor.
-          </p>
+          <div class="mark">▦</div>
+          <h3><a href="https://github.com/dancxjo/netherwick">Netherwick</a></h3>
+          <div class="subtitle">embodied robot perception and control</div>
+          <p>Current PETE robotics work: Kinect RGB/depth perception, aligned colored 3D voxels, WebXR inspection, 2D map restoration, and cautious movement through an explicit safety layer.</p>
           <ul>
-            <li><strong>Problem:</strong> make system services legible, typed, and composable</li>
-            <li><strong>Built:</strong> scheduling, IPC channels, wait sets, and device-facing services</li>
-            <li><strong>Tech:</strong> Rust, kernel work, VirtIO, VFS, display and sound experiments</li>
+            <li><strong>Problem:</strong> give an agent a trustworthy spatial world</li>
+            <li><strong>Built:</strong> real sensor capture, voxel projection, live 3D view, capture-first debug flows</li>
+            <li><strong>Tech:</strong> Rust, Kinect, WebXR, Qdrant, Neo4j, robot control loops</li>
           </ul>
-          <a class="project-link" href="https://github.com/dancxjo/thingos">Open project →</a>
+          <a class="project-link" href="https://github.com/dancxjo/netherwick">Open project →</a>
         </article>
 
         <article class="project">
           <div class="mark">◌</div>
           <h3><a href="project-pete.html">Project PETE</a></h3>
           <div class="subtitle">embodied AI cognition platform</div>
-          <p>
-            An architecture for agents that integrate perception, memory, mood and state,
-            speech, and action over time, now moving toward physical robotics and simulation.
-          </p>
+          <p>A long-running architecture for agents that integrate perception, memory, mood and state, speech, spatial situation, and action over time.</p>
           <ul>
             <li><strong>Problem:</strong> move beyond stateless chat into situated behavior</li>
-            <li><strong>Built:</strong> memory, voice, mood, perception, and embodiment experiments</li>
+            <li><strong>Built:</strong> memory, voice, mood, perception, embodiment, and ethical framing</li>
             <li><strong>Tech:</strong> Rust, LLMs, ASR/TTS, Kinect data, robotics control loops</li>
           </ul>
           <a class="project-link" href="project-pete.html">Read the PETE page →</a>
@@ -522,10 +127,7 @@
           <div class="mark">☿</div>
           <h3><a href="https://github.com/dancxjo/tongues">Tongues</a></h3>
           <div class="subtitle">Rust ML for pronunciation and speech tools</div>
-          <p>
-            A Rust toolkit for neural lexical and speech-front-end models: grapheme to phonology,
-            phonology back to spelling, multilingual Wiktionary tasks, and sentence parsing.
-          </p>
+          <p>A Rust toolkit for neural lexical and speech-front-end models: grapheme to phonology, phonology back to spelling, multilingual Wiktionary tasks, and sentence parsing.</p>
           <ul>
             <li><strong>Problem:</strong> turn messy language data into trainable speech tasks</li>
             <li><strong>Built:</strong> G2P/P2G datasets, validators, normalizers, and correction rows</li>
@@ -537,147 +139,51 @@
     </section>
 
     <section aria-labelledby="synthesis-title">
-      <div class="section-title">
-        <h2 id="synthesis-title">Mechanical synthesis, neural speed</h2>
-        <p>A concrete AI pattern I keep returning to: build a slow, inspectable teacher, then distill its behavior into compact neural models.</p>
-      </div>
+      <div class="section-title"><h2 id="synthesis-title">Mechanical synthesis, neural speed</h2><p>A concrete AI pattern I keep returning to: build a slow, inspectable teacher, then distill its behavior into compact neural models.</p></div>
       <div class="synthesis">
         <div class="panel">
           <h3>What this demonstrates</h3>
-          <p>
-            Tongues uses deterministic linguistic machinery to label text, split sentences,
-            normalize words, infer pronunciations, and catch its own mistakes. Those failures
-            become training examples for smaller models that can run cheaply at inference time.
-          </p>
-          <p>
-            This is more than synthetic data. It is a curriculum made from edge cases:
-            abbreviations, quotations, sentence boundaries, function words, dialect tags,
-            phoneme versus phone notation, and schema errors.
-          </p>
-          <div class="example-box">rule system → synthetic rows → verifier → failure cases
-       ↘                                    ↙
-        small model learns the pattern</div>
-          <p>
-            The goal is practical: compact models for streaming speech, repair, pronunciation,
-            and agentic voice interfaces.
-          </p>
+          <p>Tongues uses deterministic linguistic machinery to label text, split sentences, normalize words, infer pronunciations, and catch its own mistakes. Those failures become training examples for smaller models that can run cheaply at inference time.</p>
+          <p>Netherwick applies a related engineering rhythm to embodiment: preserve captures, render the world, inspect failure, and let the system’s mistakes become fixtures for the next pass.</p>
+          <div class="example-box">capture → projection → visible failure → fixture
+   ↘                                 ↙
+    smaller, clearer systems learn the pattern</div>
+          <p>The goal is practical: compact models and legible systems for streaming speech, robot perception, repair, pronunciation, and agentic voice interfaces.</p>
         </div>
         <div class="panel">
           <h3>The ratchet</h3>
           <div class="pipeline" aria-label="mechanical synthesis pipeline">
-            <div class="pipeline-step">
-              <strong>1. Build the slow teacher</strong>
-              <span>Sentence detectors, G2P helpers, Wiktionary parsers, normalizers, validators, and repair logic make behavior explicit.</span>
-            </div>
-            <div class="pipeline-step">
-              <strong>2. Generate difficult examples</strong>
-              <span>The teacher creates ordinary rows and adversarial-ish rows: bad cuts, missing heads, malformed tags, language mismatches, and known pronunciation traps.</span>
-            </div>
-            <div class="pipeline-step">
-              <strong>3. Train the neural approximation</strong>
-              <span>Small seq2seq models learn the input-output behavior without needing to run the whole symbolic apparatus at runtime.</span>
-            </div>
-            <div class="pipeline-step">
-              <strong>4. Feed failures back in</strong>
-              <span>When the model or verifier finds a new irregularity, that irregularity becomes another specimen for the next training pass.</span>
-            </div>
+            <div class="pipeline-step"><strong>1. Build the slow teacher</strong><span>Sentence detectors, G2P helpers, sensor pipelines, map renderers, normalizers, validators, and repair logic make behavior explicit.</span></div>
+            <div class="pipeline-step"><strong>2. Generate difficult examples</strong><span>The teacher creates ordinary rows and difficult cases: bad cuts, malformed tags, depth misalignment, stale robot modes, and known pronunciation traps.</span></div>
+            <div class="pipeline-step"><strong>3. Train the neural approximation</strong><span>Small models learn input-output behavior without needing to run the whole symbolic apparatus at runtime.</span></div>
+            <div class="pipeline-step"><strong>4. Feed failures back in</strong><span>When the model, renderer, verifier, or robot finds a new irregularity, that irregularity becomes another specimen for the next training pass.</span></div>
           </div>
         </div>
       </div>
     </section>
 
     <section aria-labelledby="strengths-title">
-      <div class="section-title">
-        <h2 id="strengths-title">Selected technical strengths</h2>
-        <p>The bridge between the experiments and production engineering roles.</p>
-      </div>
+      <div class="section-title"><h2 id="strengths-title">Selected technical strengths</h2><p>The bridge between the experiments and production engineering roles.</p></div>
       <div class="strengths">
-        <div class="panel">
-          <h3>Systems</h3>
-          <div class="skill-list">
-            <div><strong>Languages</strong><span>Rust, Go, Python, TypeScript, JavaScript, C#, SQL</span></div>
-            <div><strong>Platforms</strong><span>Linux, cloud services, async runtimes, APIs, message passing, local inference machines</span></div>
-            <div><strong>Architecture</strong><span>microservices, typed boundaries, observability, developer tooling, data pipelines</span></div>
-          </div>
-        </div>
-        <div class="panel">
-          <h3>AI and speech</h3>
-          <div class="skill-list">
-            <div><strong>Agents</strong><span>LLM orchestration, memory, tool use, mood/state modeling, embodied control loops</span></div>
-            <div><strong>Speech</strong><span>ASR/TTS integration, phonology, IPA, pronunciation modeling, streaming voice interfaces</span></div>
-            <div><strong>ML workflows</strong><span>synthetic data, dataset generation, validation, evaluation loops, small neural models</span></div>
-          </div>
-        </div>
+        <div class="panel"><h3>Systems</h3><div class="skill-list"><div><strong>Languages</strong><span>Rust, Go, Python, TypeScript, JavaScript, C#, SQL</span></div><div><strong>Platforms</strong><span>Linux, cloud services, async runtimes, APIs, message passing, local inference machines</span></div><div><strong>Architecture</strong><span>microservices, typed boundaries, observability, developer tooling, data pipelines</span></div></div></div>
+        <div class="panel"><h3>AI, speech, and robotics</h3><div class="skill-list"><div><strong>Agents</strong><span>LLM orchestration, memory, tool use, mood/state modeling, embodied control loops</span></div><div><strong>Speech</strong><span>ASR/TTS integration, phonology, IPA, pronunciation modeling, streaming voice interfaces</span></div><div><strong>Perception</strong><span>RGB/depth capture, voxel world debugging, spatial maps, replayable captures, and inspection tooling</span></div></div></div>
       </div>
     </section>
 
     <section aria-labelledby="notes-title">
-      <div class="section-title">
-        <h2 id="notes-title">Working principles</h2>
-        <p>Field notes from the workbench, minus the smoke machine.</p>
-      </div>
-      <div class="notes">
-        <article class="note">
-          <h3>Systems should explain themselves</h3>
-          <p>Logs, types, schemas, graphs, and interfaces should make the machine legible while it runs.</p>
-        </article>
-        <article class="note">
-          <h3>Memory is infrastructure</h3>
-          <p>Agents need durable context, not just chat history. Recall belongs in the architecture, not as garnish.</p>
-        </article>
-        <article class="note">
-          <h3>Failure is curriculum</h3>
-          <p>Contradictions, bad splits, malformed outputs, and verifier complaints are not just bugs. They are training specimens.</p>
-        </article>
-      </div>
+      <div class="section-title"><h2 id="notes-title">Working principles</h2><p>Field notes from the workbench, minus the smoke machine.</p></div>
+      <div class="notes"><article class="note"><h3>Systems should explain themselves</h3><p>Logs, types, schemas, graphs, captures, and interfaces should make the machine legible while it runs.</p></article><article class="note"><h3>Memory is infrastructure</h3><p>Agents need durable context, not just chat history. Recall belongs in the architecture, not as garnish.</p></article><article class="note"><h3>Failure is curriculum</h3><p>Contradictions, bad splits, depth errors, malformed outputs, and veto reasons are not just bugs. They are training specimens.</p></article></div>
     </section>
 
     <section aria-labelledby="lab-title">
-      <div class="section-title">
-        <h2 id="lab-title">Other experiments</h2>
-        <p>The clock laboratory remains, now properly tucked into the cabinet of delightful instruments.</p>
-      </div>
-      <div class="lab">
-        <div class="panel">
-          <h3>Clock laboratory</h3>
-          <p>
-            Timekeeping is interface design with celestial consequences. Change the base,
-            change the markings, change the words, and the day becomes a different machine.
-          </p>
-        </div>
-        <div class="panel clock-wrap">
-          <figure>
-            <object type="image/svg+xml" data="clock.svg">Decimal clock</object>
-            <figcaption>A decimal-time clock, for the part of the mind that suspects ten should have conquered the afternoon.</figcaption>
-          </figure>
-          <figure>
-            <object type="image/svg+xml" data="clock24.svg" id="clock24">Quartovigesimal clock</object>
-            <figcaption>A balanced quartovigesimal clock: dozenal-adjacent, Roman-corrupted, and oddly persuasive.</figcaption>
-          </figure>
-        </div>
-      </div>
+      <div class="section-title"><h2 id="lab-title">Other experiments</h2><p>The clock laboratory remains, now properly tucked into the cabinet of delightful instruments.</p></div>
+      <div class="lab"><div class="panel"><h3>Clock laboratory</h3><p>Timekeeping is interface design with celestial consequences. Change the base, change the markings, change the words, and the day becomes a different machine.</p></div><div class="panel clock-wrap"><figure><object type="image/svg+xml" data="clock.svg">Decimal clock</object><figcaption>A decimal-time clock, for the part of the mind that suspects ten should have conquered the afternoon.</figcaption></figure><figure><object type="image/svg+xml" data="clock24.svg" id="clock24">Quartovigesimal clock</object><figcaption>A balanced quartovigesimal clock: dozenal-adjacent, Roman-corrupted, and oddly persuasive.</figcaption></figure></div></div>
     </section>
 
-    <section aria-labelledby="contact-title" class="callout">
-      <div>
-        <h2 id="contact-title">I am looking for the right engineering room.</h2>
-        <p>
-          I am open to AI systems, speech, robotics, ML infrastructure, developer tooling,
-          and platform roles where unusual prototypes can become useful software.
-        </p>
-      </div>
-      <div class="hero-actions">
-        <a class="button primary" href="mailto:tdreed@gmail.com">Contact me</a>
-        <a class="button" href="https://github.com/dancxjo">GitHub</a>
-      </div>
-    </section>
+    <section aria-labelledby="contact-title" class="callout"><div><h2 id="contact-title">I am looking for the right engineering room.</h2><p>I am open to AI systems, robotics, speech, ML infrastructure, developer tooling, and platform roles where unusual prototypes can become useful software.</p></div><div class="hero-actions"><a class="button primary" href="mailto:tdreed@gmail.com">Contact me</a><a class="button" href="https://github.com/dancxjo">GitHub</a></div></section>
 
-    <footer>
-      <span>Travis Reed · AI systems, speech, robotics, operating systems</span>
-      <span><a href="mailto:tdreed@gmail.com">tdreed@gmail.com</a> · <a href="https://github.com/dancxjo">GitHub</a></span>
-    </footer>
+    <footer><span>Travis Reed · AI systems, speech, robotics, operating systems</span><span><a href="mailto:tdreed@gmail.com">tdreed@gmail.com</a> · <a href="https://github.com/dancxjo">GitHub</a></span></footer>
   </main>
-
   <script src="js/clock24.js"></script>
 </body>
 </html>
